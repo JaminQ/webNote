@@ -15,7 +15,7 @@ function mylog($str) {
     if (!is_string($str)) {
         $str = json_encode($str);
     }
-    $file = LOG_PATH.'/log.txt';
+    $file = LOG_PATH . 'log.txt';
     // if (file_exists($file)) {
     //     file_put_contents($file, '');
     // }
