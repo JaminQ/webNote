@@ -20,7 +20,7 @@ class Database {
     }
 
     public function disconnect() {
-
+        $mysqli->close();
     }
 } // END
 
