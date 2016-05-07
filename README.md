@@ -10,7 +10,7 @@ webNote/
 │       └── messages.json          //中文语言包
 ├── css/                           //样式文件目录
 │   ├── lib/                       //样式库文件目录
-│   │   └── font-awesome.css       //第三方库css文件: [icon-font字体库](http://fontawesome.io/)
+│   │   └── font-awesome.css       //第三方库css文件: icon-font字体库 (http://fontawesome.io/)
 │   ├── content.css                //页面css文件
 │   ├── option.css                 //配置页css文件
 │   └── popup.css                  //popup页面css文件
@@ -34,9 +34,9 @@ webNote/
 │   └── nicEditorIcons.gif         //富文本编辑器nicEditor用到的Icons
 ├── js/                            //脚本文件目录
 │   ├── lib/                       //脚本库文件目录
-│   │   ├── jquery.min.js          //第三方库js文件: [jQuery](https://jquery.com/)
-│   │   ├── nicEdit.min.js         //第三方库js文件: [富文本编辑器NicEdit](http://nicedit.com/)
-│   │   ├── require.min.js         //第三方库js文件: [RequireJS](http://requirejs.org/)
+│   │   ├── jquery.min.js          //第三方库js文件: jQuery (https://jquery.com/)
+│   │   ├── nicEdit.min.js         //第三方库js文件: 富文本编辑器NicEdit (http://nicedit.com/)
+│   │   ├── require.min.js         //第三方库js文件: RequireJS (http://requirejs.org/)
 │   │   └── serializeObject.js     //自行编写的用于将表单元素序列化为对象的jQuery插件
 │   ├── module/                    //自定义AMD模块目录
 │   │   ├── article.js             //
