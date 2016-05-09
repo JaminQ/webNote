@@ -3,7 +3,7 @@
 define(['database'], function (Database) {
     'use strict';
     var Article = function (title, content, date) {
-        this.s = '#FLY2ARTICLE#';
+        this.s = '#WEBNOTEARTICLE#';
         this.title = '';
         this.content = '';
         this.date = 0;

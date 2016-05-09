@@ -3,7 +3,7 @@
 define(['database'], function (Database) {
     'use strict';
     var Config = function () {
-        this.s = '#FLY2CONFIG#';
+        this.s = '#WEBNOTECONFIG#';
         this.flyMode = null;
         this.setup();
     };
