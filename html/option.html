@@ -9,10 +9,7 @@
 <body>
     <input type="file" id="import-data" style="display:none;">
     <div class="header">
-        <div class="logo">
-            <img src="../icon/logo128.png">
-            <span>让小二飞</span>
-        </div>
+        <h1>个人笔记</h1>
         <div class="search-box">
             <i class="fa fa-search"></i>
             <input type="text" id="search-input" placeholder="输入你要检索的知识库关键字">
@@ -26,7 +23,7 @@
                 <li class="opt" data-toggle="trash">回收站</li>
                 <li class="opt" data-toggle="export">数据导出</li>
                 <li class="opt" data-toggle="import">数据导入</li>
-                <li style="display: none;" class="opt" data-toggle="edit">编辑知识</li>
+                <li class="opt" data-toggle="edit" style="display: none;">编辑知识</li>
             </ul>
         </div>
 
@@ -48,6 +45,9 @@
                     </div>
                 </div>
             </div>
+            <div id="trash" class="tab-pane">
+                <div class="article-box"></div>
+            </div>
             <div id="export" class="tab-pane">
                 <div class="article-box">
                     <div class="btn-box-center">
@@ -59,7 +59,7 @@
                                 <b>导出数据到文件</b>
                             </p>
                             <p>您可以把本地数据导出为文件。</p>
-                            <p>可方便于备份，或者与他人分享您的知识库。</p>
+                            <p>可方便于备份，或者与他人分享您的笔记。</p>
                         </div>
                     </div>
                 </div>
@@ -75,13 +75,10 @@
                                 <b>从文件导入数据</b>
                             </p>
                             <p>您可以从文件扩充本地数据。</p>
-                            <p>您原有的数据不会丢失，会扩充您的知识库。</p>
+                            <p>您原有的数据不会丢失，会扩充您的笔记。</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="trash" class="tab-pane">
-                <div class="article-box"></div>
             </div>
             <div id="edit" class="tab-pane">
                 <div class="article-box edit-article">
