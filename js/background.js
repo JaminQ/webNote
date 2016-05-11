@@ -1,21 +1,21 @@
 /*global require, chrome*/
 
-require(['msg', 'database', 'config', 'article'], function (Msg, Database, Config, Article) {
+require(['msg', 'localDatabase', 'config', 'article'], function(Msg, LocalDatabase, Config, Article) {
     'use strict';
     var msg = new Msg('server'),
-        database,
+        localDatabase,
         config;
-    msg.listen(function (request, send) {
+    msg.listen(function(request, send) {
         switch (request.code) {
-        case 'SEARCH':
-            send(0, Article.search('list', request.data));
-            break;
-        case 'ASK':
-            send(0, config.flyMode);
-            break;
+            case 'SEARCH':
+                send(0, Article.search('list', request.data));
+                break;
+            case 'ASK':
+                send(0, config.flyMode);
+                break;
         }
     });
-    database = new Database();
-    database.setup();
+    localDatabase = new LocalDatabase();
+    localDatabase.setup();
     config = new Config();
 });

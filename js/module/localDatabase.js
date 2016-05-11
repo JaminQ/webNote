@@ -2,7 +2,7 @@
 
 define(function() {
     'use strict';
-    var Database = function() {
+    var LocalDatabase = function() {
         this.s = '#WEBNOTEDATABASE#';
         this.config = 'WEBNOTE_CONFIG';
         this.article = 'WEBNOTE_ARTICLE_';
@@ -13,7 +13,7 @@ define(function() {
         this.as = '#WEBNOTEDATABASEARTICLE#';
         this.asi = '#WEBNOTEDATABASEARTICLEID#';
     };
-    Database.prototype.toString = function() {
+    LocalDatabase.prototype.toString = function() {
         var list = this.loadArticle('list'),
             removed = this.loadArticle('removed'),
             result = '',
@@ -42,7 +42,7 @@ define(function() {
         }
         return result;
     };
-    Database.prototype.make = function(string) {
+    LocalDatabase.prototype.make = function(string) {
         this.setItem(this.flag, 'ok');
         var tempArray = string.split(this.s),
             articleArray = null,
@@ -74,7 +74,7 @@ define(function() {
             }
         }
     };
-    Database.prototype.setup = function() {
+    LocalDatabase.prototype.setup = function() {
         if (this.getItem(this.flag) === null) {
             this.setItem(this.flag, 'ok');
             this.setItem(this.config, 'none');
@@ -82,16 +82,16 @@ define(function() {
             this.setItem(this.removed, '');
         }
     };
-    Database.prototype.flush = function() {
+    LocalDatabase.prototype.flush = function() {
         this.storage.clear();
     };
-    Database.prototype.saveConfig = function(value) {
+    LocalDatabase.prototype.saveConfig = function(value) {
         this.setItem(this.config, value);
     };
-    Database.prototype.loadConfig = function() {
+    LocalDatabase.prototype.loadConfig = function() {
         return this.getItem(this.config);
     };
-    Database.prototype.saveArticle = function(action, id, data) {
+    LocalDatabase.prototype.saveArticle = function(action, id, data) {
         var tempList,
             contains = function(array, item) {
                 var i;
@@ -144,7 +144,7 @@ define(function() {
                 break;
         }
     };
-    Database.prototype.loadArticle = function(action, id) {
+    LocalDatabase.prototype.loadArticle = function(action, id) {
         var result = null;
         switch (action) {
             case 'one':
@@ -159,11 +159,11 @@ define(function() {
         }
         return result;
     };
-    Database.prototype.getItem = function(key) {
+    LocalDatabase.prototype.getItem = function(key) {
         return this.storage.getItem(key);
     };
-    Database.prototype.setItem = function(key, value) {
+    LocalDatabase.prototype.setItem = function(key, value) {
         this.storage.setItem(key, value);
     };
-    return Database;
+    return LocalDatabase;
 });

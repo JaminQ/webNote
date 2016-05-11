@@ -10,18 +10,18 @@
  *
  */
 
-define(function () {
+define(function() {
     'use strict';
-    var Msg = function (area) {
+    var Msg = function(area) {
         if (area === 'client') {
             this.area = 'C';
         } else {
             this.area = 'S';
         }
     };
-    Msg.prototype.listen = function (callback) {
-        chrome.runtime.onMessage.addListener(function (request, sender, response) {
-            var send = function (code, data) {
+    Msg.prototype.listen = function(callback) {
+        chrome.runtime.onMessage.addListener(function(request, sender, response) {
+            var send = function(code, data) {
                 response({
                     code: code,
                     data: data
@@ -30,12 +30,12 @@ define(function () {
             callback(request, send);
         });
     };
-    Msg.prototype.send = function (code, data, callback) {
+    Msg.prototype.send = function(code, data, callback) {
         if (this.area === 'C') {
             chrome.runtime.sendMessage({
                 code: code,
                 data: data
-            }, function (response) {
+            }, function(response) {
                 if (typeof callback === 'function') {
                     callback(response);
                 }
@@ -44,11 +44,11 @@ define(function () {
             chrome.tabs.query({
                 active: true,
                 currentWindow: true
-            }, function (tabs) {
+            }, function(tabs) {
                 chrome.tabs.sendMessage(tabs[0].id, {
                     code: code,
                     data: data
-                }, function (response) {
+                }, function(response) {
                     if (typeof callback === 'function') {
                         callback(response);
                     }

@@ -1,14 +1,14 @@
 /*global define, chrome*/
 
-define(['database'], function (Database) {
+define(['localDatabase'], function(LocalDatabase) {
     'use strict';
-    var Article = function (title, content, date) {
+    var Article = function(title, content, date) {
         this.s = '#WEBNOTEARTICLE#';
+        this.id = '';
         this.title = '';
         this.content = '';
         this.date = 0;
-        this.id = '';
-        var randomId = function (length) {
+        var randomId = function(length) {
             var lib = 'abcdefghijklmnopqrstuvwxyz',
                 i,
                 result = '';
@@ -26,10 +26,10 @@ define(['database'], function (Database) {
             this.date = date;
         }
     };
-    Article.prototype.toString = function () {
+    Article.prototype.toString = function() {
         return this.id + this.s + this.title + this.s + this.content + this.s + this.date;
     };
-    Article.prototype.make = function (string) {
+    Article.prototype.make = function(string) {
         var tempArray = string.split(this.s);
         if (tempArray.length !== 4) {
             return false;
@@ -39,26 +39,26 @@ define(['database'], function (Database) {
         this.content = tempArray[2];
         this.date = parseInt(tempArray[3], 10);
     };
-    Article.prototype.save = function () {
-        var database = new Database();
-        database.saveArticle('edit', this.id, this.toString());
+    Article.prototype.save = function() {
+        var localDatabase = new LocalDatabase();
+        localDatabase.saveArticle('edit', this.id, this.toString());
     };
-    Article.prototype.remove = function () {
-        var database = new Database();
-        database.saveArticle('remove', this.id);
+    Article.prototype.remove = function() {
+        var localDatabase = new LocalDatabase();
+        localDatabase.saveArticle('remove', this.id);
     };
-    Article.prototype.recover = function () {
-        var database = new Database();
-        database.saveArticle('recover', this.id);
+    Article.prototype.recover = function() {
+        var localDatabase = new LocalDatabase();
+        localDatabase.saveArticle('recover', this.id);
     };
-    Article.prototype.removeReal = function () {
-        var database = new Database();
-        database.saveArticle('removeReal', this.id);
+    Article.prototype.removeReal = function() {
+        var localDatabase = new LocalDatabase();
+        localDatabase.saveArticle('removeReal', this.id);
     };
-    Article.search = function (target, keyword) {
-        var database = new Database(),
-            list = database.loadArticle('list'),
-            removed = database.loadArticle('removed'),
+    Article.search = function(target, keyword) {
+        var localDatabase = new LocalDatabase(),
+            list = localDatabase.loadArticle('list'),
+            removed = localDatabase.loadArticle('removed'),
             result = [],
             i,
             j,
@@ -66,7 +66,7 @@ define(['database'], function (Database) {
         if (target === 'list') {
             for (i in list) {
                 if (list[i] !== '') {
-                    tempArticle = new Article(database.loadArticle('one', list[i]));
+                    tempArticle = new Article(localDatabase.loadArticle('one', list[i]));
                     if (keyword === '' || tempArticle.title.indexOf(keyword) !== -1 || tempArticle.content.indexOf(keyword) !== -1) {
                         result.push(tempArticle);
                     }
@@ -75,24 +75,18 @@ define(['database'], function (Database) {
         } else {
             for (i in removed) {
                 if (removed[i] !== '') {
-                    tempArticle = new Article(database.loadArticle('one', removed[i]));
+                    tempArticle = new Article(localDatabase.loadArticle('one', removed[i]));
                     if (keyword === '' || tempArticle.title.indexOf(keyword) !== -1 || tempArticle.content.indexOf(keyword) !== -1) {
                         result.push(tempArticle);
                     }
                 }
             }
         }
-        // 按时间排序
-        for (i = 0; i < result.length; i += 1) {
-            for (j = 0; j < result.length - i - 1; j += 1) {
-                if (result[j].date < result[j + 1].date) {
-                    tempArticle = result[j];
-                    result[j] = result[j + 1];
-                    result[j + 1] = tempArticle;
-                }
-            }
-        }
-        Date.prototype.Format = function (fmt) {
+        // 按时间从大往小排序（时间从近到远）
+        result.sort(function(a, b){
+            return b.date - a.date;
+        });
+        Date.prototype.Format = function(fmt) {
             var o = {
                     'M+': this.getMonth() + 1,
                     'd+': this.getDate(),
@@ -120,9 +114,9 @@ define(['database'], function (Database) {
         }
         return result;
     };
-    Article.getById = function (id) {
-        var database = new Database();
-        return new Article(database.loadArticle('one', id));
+    Article.getById = function(id) {
+        var localDatabase = new LocalDatabase();
+        return new Article(localDatabase.loadArticle('one', id));
     };
     return Article;
 });

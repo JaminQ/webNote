@@ -1,8 +1,8 @@
 /*global require, chrome, nicEditor*/
 
-require(['jquery', 'article', 'database'], function ($, Article, Database) {
+require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatabase) {
     'use strict';
-    var database = new Database(),
+    var localDatabase = new LocalDatabase(),
         editor,
         editorEdit,
         resizeHandle,
@@ -226,7 +226,7 @@ require(['jquery', 'article', 'database'], function ($, Article, Database) {
             return;
         }
         fr.onloadend = function () {
-            database.make(this.result);
+            localDatabase.make(this.result);
             showMsg('数据导入成功');
         };
         fr.readAsText(file);
@@ -234,7 +234,7 @@ require(['jquery', 'article', 'database'], function ($, Article, Database) {
 
     $('#export-btn').on('click', function () {
         chrome.downloads.download({
-            url: 'data:text/plain,' + database.toString(),
+            url: 'data:text/plain,' + localDatabase.toString(),
             filename: 'data.fly2'
         });
     });

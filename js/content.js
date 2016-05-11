@@ -49,12 +49,9 @@ require(['msg', 'jquery', 'content.html'], function(Msg, $, context) {
         $body.append($wrapper);
 
         $("#fly2-wrapper .search-storage").bind("click", fly2_showStorage);
-        $("#fly2-wrapper .search-call").bind("click", function(){
+        $("#fly2-wrapper .search-call").bind("click", function() {
             window.open("http://www.taobao.com/webww/ww.php?ver=3&touid=" + selectedText + "&siteid=cntaobao&status=1&charset=utf-8");
         });
-        //Todo: 添加查物流查物品详情事件
-        //$("#fly2-wrapper .search-stream").bind("click", );
-        //$("#fly2-wrapper .search-details").bind("click", );
 
         $("body").bind("mouseup", fly2_initWrapper);
 

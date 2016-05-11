@@ -1,15 +1,15 @@
 /*global define, chrome*/
 
-define(['database'], function (Database) {
+define(['localDatabase'], function(LocalDatabase) {
     'use strict';
-    var Config = function () {
+    var Config = function() {
         this.s = '#WEBNOTECONFIG#';
         this.flyMode = null;
         this.setup();
     };
-    Config.prototype.setup = function () {
-        var database = new Database(),
-            config = database.loadConfig();
+    Config.prototype.setup = function() {
+        var localDatabase = new LocalDatabase(),
+            config = localDatabase.loadConfig();
         if (config === 'none') {
             this.flyMode = 'on';
             this.save();
@@ -17,10 +17,10 @@ define(['database'], function (Database) {
             this.make(config);
         }
     };
-    Config.prototype.toString = function () {
+    Config.prototype.toString = function() {
         return this.flyMode;
     };
-    Config.prototype.make = function (string) {
+    Config.prototype.make = function(string) {
         var tempArray = string.split(this.s);
         if (tempArray.length !== 1) {
             return false;
@@ -28,14 +28,14 @@ define(['database'], function (Database) {
         this.flyMode = tempArray[0];
         this.setBadge();
     };
-    Config.prototype.save = function () {
-        var database = new Database();
+    Config.prototype.save = function() {
+        var localDatabase = new LocalDatabase();
         this.setBadge();
-        database.saveConfig(this.toString());
+        localDatabase.saveConfig(this.toString());
     };
-    Config.prototype.setBadge = function () {
+    Config.prototype.setBadge = function() {
         chrome.browserAction.setBadgeText({
-            text: this.flyMode === 'on' ? 'FLY' : 'OFF'
+            text: this.flyMode === 'on' ? 'ON' : 'OFF'
         });
         chrome.browserAction.setBadgeBackgroundColor({
             color: this.flyMode === 'on' ? '#82a06a' : '#b2ac9e'
