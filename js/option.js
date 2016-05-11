@@ -1,6 +1,6 @@
 /*global require, chrome, nicEditor*/
 
-require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatabase) {
+require(['jquery', 'article', 'localDatabase'], function($, Article, LocalDatabase) {
     'use strict';
     var localDatabase = new LocalDatabase(),
         editor,
@@ -9,7 +9,7 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
         flag = false,
         flagEdit = false,
         Editor = nicEditor,
-        showMsg = function (msg) {
+        showMsg = function(msg) {
             $('.msg').remove();
             var msgBox = $('<div class="msg"></div>');
             msgBox.css({
@@ -31,16 +31,16 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
             });
             msgBox.html(msg);
             $('body').append(msgBox);
-            setTimeout(function () {
+            setTimeout(function() {
                 msgBox.css({
                     'transform': 'scale(1)'
                 });
             }, 50);
-            setTimeout(function () {
+            setTimeout(function() {
                 msgBox.remove();
             }, 1550);
         },
-        makeArticle = function (area, article) {
+        makeArticle = function(area, article) {
             var articleWrapper = $('<div class="content-list" article-id="' + article.id + '"></div>'),
                 titleWrapper = $('<div class="content-list-title"></div>'),
                 dateWrapper = $('<div class="content-list-date"></div>'),
@@ -52,7 +52,7 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
             if (area === 'look') {
                 funcWrapper.append('<i class="fa fa-edit"></i><a class="content-list-footer-edit">编辑</a>');
                 funcWrapper.append('<i class="fa fa-trash"></i><a class="content-list-footer-trash">放入回收站</a>');
-                funcWrapper.find('.content-list-footer-edit').click(function () {
+                funcWrapper.find('.content-list-footer-edit').click(function() {
                     var article = Article.getById($(this).parents('.content-list').attr('article-id'));
                     if (article) {
                         $('.opt[data-toggle=edit]').show().click();
@@ -70,7 +70,7 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
                         editorEdit.setContent(article.content);
                     }
                 });
-                funcWrapper.find('.content-list-footer-trash').click(function () {
+                funcWrapper.find('.content-list-footer-trash').click(function() {
                     var article = Article.getById($(this).parents('.content-list').attr('article-id'));
                     if (article) {
                         if (window.confirm('是否确定放入回收站？')) {
@@ -83,7 +83,7 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
             } else {
                 funcWrapper.append('<i class="fa fa-edit"></i><a class="content-list-footer-recover">恢复</a>');
                 funcWrapper.append('<i class="fa fa-trash"></i><a class="content-list-footer-trash">彻底删除</a>');
-                funcWrapper.find('.content-list-footer-recover').click(function () {
+                funcWrapper.find('.content-list-footer-recover').click(function() {
                     var article = Article.getById($(this).parents('.content-list').attr('article-id'));
                     if (article) {
                         if (window.confirm('是否确定恢复？')) {
@@ -93,7 +93,7 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
                         }
                     }
                 });
-                funcWrapper.find('.content-list-footer-trash').click(function () {
+                funcWrapper.find('.content-list-footer-trash').click(function() {
                     var article = Article.getById($(this).parents('.content-list').attr('article-id'));
                     if (article) {
                         if (window.confirm('是否确定彻底删除？')) {
@@ -107,7 +107,7 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
             articleWrapper.append(titleWrapper).append(dateWrapper).append(contentWrapper).append(funcWrapper);
             return articleWrapper;
         },
-        search = function (area) {
+        search = function(area) {
             var maxHeight = 150,
                 keyword = $('#search-input').val(),
                 articles = (area === 'look' ? Article.search('list', keyword) : Article.search('removed', ''));
@@ -115,11 +115,11 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
             if (articles.length === 0) {
                 $('#' + area + ' .article-box').append(area === 'look' ? $('<div class="content-list-empty">你还没有自己的知识库呢！</div>') : $('<div class="content-list-empty">你的回收站很干净哦！</div>'));
             } else {
-                $(articles).each(function (i) {
+                $(articles).each(function(i) {
                     $('#' + area + ' .article-box').append(makeArticle(area, this));
                 });
                 // 检测高度
-                $('#' + area + ' .article-box .content-list-content').map(function (index, elem) {
+                $('#' + area + ' .article-box .content-list-content').map(function(index, elem) {
                     if ($(elem).height() > maxHeight) {
                         $(elem)
                             .height(maxHeight)
@@ -132,7 +132,7 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
                         visibility: 'visible'
                     })
                     .find('.content-list-footer-more')
-                    .bind('click', function (event) {
+                    .bind('click', function(event) {
                         if (typeof this.toggle === "undefined") {
                             this.toggle = true;
                         }
@@ -162,62 +162,65 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
                         this.toggle = !this.toggle;
                     });
             }
+        },
+        resizeHandle = function() {
+            $('.area-holder > div').css({
+                'width': $('.tab-content').width() + 'px',
+                'box-sizing': 'border-box',
+                'background-color': 'white'
+            });
+            $('.nicEdit-main').css({
+                'width': $('.area-holder > div').eq(1).width() - 10 + 'px',
+                'box-sizing': 'border-box',
+                'min-height': 'auto',
+                'height': ((($('.sidebar').height() - 250) < 300) ? 300 : (($('.sidebar').height() - 250))) + 'px',
+                'overflow-x': 'hidden',
+                'overflow-y': 'auto',
+                'font-size': '16px',
+                'background-color': 'white'
+            });
         };
-    resizeHandle = function () {
-        $('.area-holder > div').css({
-            'width': $('.tab-content').width() - 40 + 'px',
-            'box-sizing': 'border-box'
-        });
-        $('.nicEdit-main').css({
-            'width': $('.area-holder > div').eq(1).width() - 10 + 'px',
-            'box-sizing': 'border-box',
-            'min-height': 'auto',
-            'height': $('.tab-content').height() - 200 + 'px',
-            'overflow-x': 'hidden',
-            'overflow-y': 'auto',
-            'font-size': '16px'
-        });
-
-    };
     // bind event
     $(window).resize(resizeHandle);
-    $('.opt').click(function () {
+    $('.opt').click(function() {
         if ($(this).attr('data-toggle') !== 'edit') {
             $('.opt[data-toggle=edit]').hide();
         }
         $('.opt').removeClass('active');
-        $('.tab-pane').removeClass('active');
-        $('.tab-pane').removeClass('in');
-        $('#' + $(this).attr('data-toggle')).addClass('active');
-        $('#' + $(this).attr('data-toggle')).addClass('in');
+        $('.tab-pane')
+            .removeClass('active')
+            .removeClass('in');
+        $('#' + $(this).attr('data-toggle'))
+            .addClass('active')
+            .addClass('in');
         $(this).addClass('active');
         switch ($(this).attr('data-toggle')) {
-        case 'look':
-            search('look');
-            break;
-        case 'trash':
-            search('trash');
-            break;
-        case 'add':
-            if (!flag) {
-                flag = true;
-                editor = new Editor({
-                    fullPanel: true
-                }).panelInstance('article-content-input', {
-                    hasPanel: true
-                });
-                editor = editor.instanceById('article-content-input');
-                resizeHandle();
-            }
-            break;
+            case 'look':
+                search('look');
+                break;
+            case 'trash':
+                search('trash');
+                break;
+            case 'add':
+                if (!flag) {
+                    flag = true;
+                    editor = new Editor({
+                        fullPanel: true
+                    }).panelInstance('article-content-input', {
+                        hasPanel: true
+                    });
+                    editor = editor.instanceById('article-content-input');
+                    resizeHandle();
+                }
+                break;
         }
     });
 
-    $('#import-btn').on('click', function () {
+    $('#import-btn').on('click', function() {
         $('#import-data').click();
     });
 
-    $('#import-data').on('change', function () {
+    $('#import-data').on('change', function() {
         var file = this.files[0],
             fr = new window.FileReader();
         if (file.name.indexOf('.fly2') === -1) {
@@ -225,30 +228,30 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
             this.value = null;
             return;
         }
-        fr.onloadend = function () {
+        fr.onloadend = function() {
             localDatabase.make(this.result);
             showMsg('数据导入成功');
         };
         fr.readAsText(file);
     });
 
-    $('#export-btn').on('click', function () {
+    $('#export-btn').on('click', function() {
         chrome.downloads.download({
             url: 'data:text/plain,' + localDatabase.toString(),
             filename: 'data.fly2'
         });
     });
 
-    $('#search-input').on('input propertychange', function () {
+    $('#search-input').on('input propertychange', function() {
         $('.opt[data-toggle=look]').click();
     });
 
-    $('#reset-btn').click(function () {
+    $('#reset-btn').click(function() {
         $('#article-title-input').val('');
         editor.setContent('');
     });
 
-    $('#save-btn').click(function () {
+    $('#save-btn').click(function() {
         var title = $('#article-title-input').val(),
             content = editor.getContent(),
             date = parseInt((new Date()).getTime() / 1000, 10),
@@ -264,12 +267,12 @@ require(['jquery', 'article', 'localDatabase'], function ($, Article, LocalDatab
         $('.opt[data-toggle=look]').click();
     });
 
-    $('#reset-btn-edit').click(function () {
+    $('#reset-btn-edit').click(function() {
         $('#article-title-input-edit').val('');
         editorEdit.setContent('');
     });
 
-    $('#save-btn-edit').click(function () {
+    $('#save-btn-edit').click(function() {
         var title = $('#article-title-input-edit').val(),
             content = editorEdit.getContent(),
             date = parseInt((new Date()).getTime() / 1000, 10),
