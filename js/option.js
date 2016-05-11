@@ -110,10 +110,15 @@ require(['jquery', 'article', 'localDatabase'], function($, Article, LocalDataba
         search = function(area) {
             var maxHeight = 150,
                 keyword = $('#search-input').val(),
-                articles = (area === 'look' ? Article.search('list', keyword) : Article.search('removed', ''));
+                acticlesAll = (area === 'look' ? Article.search('list', '') : Article.search('removed', '')),
+                articles = (area === 'look' ? Article.search('list', keyword) : Article.search('removed', keyword));
             $('#' + area + ' .article-box').html('');
             if (articles.length === 0) {
-                $('#' + area + ' .article-box').append(area === 'look' ? $('<div class="content-list-empty">你还没有自己的知识库呢！</div>') : $('<div class="content-list-empty">你的回收站很干净哦！</div>'));
+                if(acticlesAll.length === 0){
+                    $('#' + area + ' .article-box').append(area === 'look' ? $('<div class="content-list-empty">你还没有创建自己的笔记呢！</div>') : $('<div class="content-list-empty">你的回收站很干净哦！</div>'));
+                }else{
+                    $('#' + area + ' .article-box').append(area === 'look' ? $('<div class="content-list-empty">找不到带有关键字“' + keyword + '”的笔记！</div>') : $('<div class="content-list-empty">在回收站里找不到带有关键字“' + keyword + '”的笔记！</div>'));
+                }
             } else {
                 $(articles).each(function(i) {
                     $('#' + area + ' .article-box').append(makeArticle(area, this));
@@ -164,21 +169,23 @@ require(['jquery', 'article', 'localDatabase'], function($, Article, LocalDataba
             }
         },
         resizeHandle = function() {
-            $('.area-holder > div').css({
-                'width': $('.tab-content').width() + 'px',
-                'box-sizing': 'border-box',
-                'background-color': 'white'
-            });
-            $('.nicEdit-main').css({
-                'width': $('.area-holder > div').eq(1).width() - 10 + 'px',
-                'box-sizing': 'border-box',
-                'min-height': 'auto',
-                'height': ((($('.sidebar').height() - 250) < 300) ? 300 : (($('.sidebar').height() - 250))) + 'px',
-                'overflow-x': 'hidden',
-                'overflow-y': 'auto',
-                'font-size': '16px',
-                'background-color': 'white'
-            });
+            if (flag || flagEdit) {
+                $('.area-holder > div').css({
+                    'width': $('.tab-content').width() + 'px',
+                    'box-sizing': 'border-box',
+                    'background-color': 'white'
+                });
+                $('.nicEdit-main').css({
+                    'width': $('.area-holder > div').eq(1).width() - 10 + 'px',
+                    'box-sizing': 'border-box',
+                    'min-height': 'auto',
+                    'height': ((($('.sidebar').height() - 250) < 300) ? 300 : (($('.sidebar').height() - 250))) + 'px',
+                    'overflow-x': 'hidden',
+                    'overflow-y': 'auto',
+                    'font-size': '16px',
+                    'background-color': 'white'
+                });
+            }
         };
     // bind event
     $(window).resize(resizeHandle);
@@ -223,7 +230,7 @@ require(['jquery', 'article', 'localDatabase'], function($, Article, LocalDataba
     $('#import-data').on('change', function() {
         var file = this.files[0],
             fr = new window.FileReader();
-        if (file.name.indexOf('.fly2') === -1) {
+        if (file.name.indexOf('.webnote') === -1) {
             showMsg('文件格式错误，请重试');
             this.value = null;
             return;
@@ -238,12 +245,12 @@ require(['jquery', 'article', 'localDatabase'], function($, Article, LocalDataba
     $('#export-btn').on('click', function() {
         chrome.downloads.download({
             url: 'data:text/plain,' + localDatabase.toString(),
-            filename: 'data.fly2'
+            filename: 'data.webnote'
         });
     });
 
     $('#search-input').on('input propertychange', function() {
-        $('.opt[data-toggle=look]').click();
+        $('.opt[data-toggle=' + $('.opt.active').data('toggle') + ']').click();
     });
 
     $('#reset-btn').click(function() {
