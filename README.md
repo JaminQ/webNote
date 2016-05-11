@@ -65,6 +65,10 @@ webNote/
 - 增加导入数据时的article id唯一性检测。
 - 在popup页里关闭插件时应对每个tab进行通信。
 - 重新封装，优化代码结构。
+- 将option.js中的window.confirm()以更友好的方式做交互。
+- 增加文件拖入功能来实现文件导入。
+- 实现更好的自适应布局。
+- 将日期信息拓展至时间（即从`YYYY.MM.DD`拓展至`YYYY.MM.DD HH:MM:SS`）
 
 ## 其他
 
