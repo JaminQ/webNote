@@ -39,11 +39,11 @@ webNote/
 │   │   ├── require.min.js         //第三方库js文件: RequireJS (http://requirejs.org/)
 │   │   └── serializeObject.js     //自行编写的用于将表单元素序列化为对象的jQuery插件
 │   ├── module/                    //自定义AMD模块目录
-│   │   ├── article.js             //
-│   │   ├── config.js              //
+│   │   ├── article.js             //笔记对象(依赖于localDatabase模块)
+│   │   ├── config.js              //软件配置对象(依赖于localDatabase模块)
 │   │   ├── content.html.js        //
-│   │   ├── database.js            //
-│   │   └── msg.js                 //
+│   │   ├── localDatabase.js       //本地数据db操作模块
+│   │   └── msg.js                 //程序内部通信模块
 │   ├── background.js              //后台页面js文件
 │   ├── content.js                 //页面js文件
 │   ├── option.js                  //配置页js文件
@@ -58,6 +58,13 @@ webNote/
 ## 操作逻辑与通信流程
 
 *待形成文字*
+
+## TODO
+
+- 增加新增笔记时的article id唯一性检测。
+- 增加导入数据时的article id唯一性检测。
+- 在popup页里关闭插件时应对每个tab进行通信。
+- 重新封装，优化代码结构。
 
 ## 其他
 
