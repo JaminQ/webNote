@@ -129,13 +129,10 @@ require(['jquery', 'article', 'localDatabase'], function($, Article, LocalDataba
                         $(elem)
                             .height(maxHeight)
                             .siblings('.content-list-footer')
-                            .prepend($('<i class="fa fa-caret-down"></i><a class="content-list-footer-more">查看更多</a>'));
+                            .prepend($('<i class="fa fa-caret-down"></i><a class="content-list-footer-more">展开</a>'));
                     }
                 });
                 $('#' + area + ' .content-list')
-                    .css({
-                        visibility: 'visible'
-                    })
                     .find('.content-list-footer-more')
                     .bind('click', function(event) {
                         if (typeof this.toggle === "undefined") {
@@ -143,6 +140,7 @@ require(['jquery', 'article', 'localDatabase'], function($, Article, LocalDataba
                         }
                         if (this.toggle) {
                             $(event.target)
+                                .html('收起')
                                 .parent()
                                 .siblings('.content-list-content')
                                 .css({
@@ -154,6 +152,7 @@ require(['jquery', 'article', 'localDatabase'], function($, Article, LocalDataba
                                 .addClass('fa-caret-up');
                         } else {
                             $(event.target)
+                                .html('展开')
                                 .parent()
                                 .siblings('.content-list-content')
                                 .css({
