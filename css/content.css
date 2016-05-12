@@ -1,5 +1,17 @@
-div#fly2-wrapper {
-  font-family: Microsoft YaHei;
+div#webNote-wrapper,
+div#webNote-storage {
+  font-family: 'Microsoft YaHei';
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-weight: normal;
+  line-height: normal;
+  text-align: left;
+  color: black;
+  background: none;
+  text-decoration: none;
+}
+div#webNote-wrapper {
   position: absolute;
   z-index: 9999999;
   display: none;
@@ -9,93 +21,90 @@ div#fly2-wrapper {
   background-color: rgba(90, 90, 90, .8);
   box-shadow: 2px 2px 3px 0 gray;
 }
-div#fly2-wrapper a {
+div#webNote-wrapper a {
   font-size: 16px;
-  display: block;
   float: left;
   width: 43px;
-  height: 23px;
+  height: 43px;
   padding: 10px 0;
+  border: 0;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   color: white;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-div#fly2-wrapper a:hover {
+div#webNote-wrapper a:hover {
   font-size: 16px;
-  display: block;
   float: left;
   width: 43px;
-  height: 23px;
+  height: 43px;
   padding: 10px 0;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   color: white;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(200, 200, 200, .8);
 }
-div#fly2-wrapper a.search-call i {
-  font-family: Microsoft YaHei;
-}
-div#fly2-storage {
-  font-family: Microsoft YaHei;
+div#webNote-storage {
   position: fixed;
   z-index: 9999998;
   display: none;
   background-color: #f5f5f5;
   box-shadow: 0 0 25px 2px rgb(160, 160, 160);
 }
-div#fly2-storage .fly2-header {
+div#webNote-storage .webNote-header {
   height: 50px;
-  margin-bottom: 20px;
   background-color: #2f4050;
 }
-div#fly2-storage .fly2-header .fly2-header-title {
+div#webNote-storage .webNote-header .webNote-header-title {
   font-size: 20px;
   line-height: 50px;
-  padding-left: 75px;
+  padding: 0 0 0 75px;
   color: #79bbff;
   background-image: url('../icon/logo38.png');
   background-repeat: no-repeat;
   background-position: 20px center;
 }
-div#fly2-storage .fly2-header .fly2-storage-search {
+div#webNote-storage .webNote-header .webNote-storage-search {
   position: absolute;
-  top: 6px;
-  right: 50px;
-  width: 280px;
+  top: 7px;
+  right: 45px;
 }
-div#fly2-storage .fly2-header .fly2-storage-search i {
+div#webNote-storage .webNote-header .webNote-storage-search i {
   font-size: 25px;
   position: absolute;
   top: 6px;
   left: 18px;
   margin: 0;
   padding: 0;
-  color: rgb(200, 200, 200);
+  color: #c8c8c8;
 }
-div#fly2-storage .fly2-header .fly2-storage-search input {
-  font-family: Microsoft YaHei;
+div#webNote-storage .webNote-header .webNote-storage-search input {
+  font-family: 'Microsoft YaHei';
   font-size: 16px;
-  line-height: 38px;
+  line-height: 36px;
   box-sizing: border-box;
-  width: 100%;
-  height: 38px;
-  padding: 0 20px 0 45px;
+  width: 300px;
+  height: 36px;
+  padding: 0 20px 0 55px;
   color: #555;
   border: 1px solid #ccc;
-  border-radius: 19px;
+  border-radius: 23px;
+  outline: 0;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }
-div#fly2-storage .fly2-header .fly2-storage-search input:focus {
-  outline: 0;
+div#webNote-storage .main-content {
+  overflow-y: auto;
 }
-div#fly2-storage .main-content {
-  overflow-y: scroll;
-  margin: 0 1%;
-  padding: 0 1%;
-}
-div#fly2-storage i.closeFly2 {
+div#webNote-storage i.closeWebNote {
   font-size: 30px;
   position: absolute;
   top: 8px;
@@ -106,46 +115,47 @@ div#fly2-storage i.closeFly2 {
   cursor: pointer;
   color: rgb(200, 200, 200);
 }
-div#fly2-storage .main-content .content-list {
-  visibility: hidden;
-  margin: 0 15px 20px 10px;
+div#webNote-storage .main-content .content-list {
+  margin: 20px;
   background-color: #fff;
-  box-shadow: 0 0 10px 0 rgb(200, 200, 200);
+  box-shadow: 0 0 10px 0 #c8c8c8;
 }
-div#fly2-storage .main-content .content-list-empty {
+div#webNote-storage .main-content .content-list-empty {
   font-size: 20px;
+  margin: 50px 0 0 0;
   text-align: center;
   color: #555;
 }
-div#fly2-storage .main-content .content-list .content-list-title {
+div#webNote-storage .main-content .content-list .content-list-title {
   font-size: 17px;
   float: left;
-  margin-right: 5px;
   padding: 10px 0 0 10px;
   border-left: 7px solid skyblue;
 }
-div#fly2-storage .main-content .content-list .content-list-date {
+div#webNote-storage .main-content .content-list .content-list-date {
+  font-size: 12px;
   float: right;
-  margin-right: 30px;
-  padding-top: 15px;
+  margin: 15px 30px 0 0;
   color: #6c6c6c;
 }
-div#fly2-storage .main-content .content-list .content-list-content {
+div#webNote-storage .main-content .content-list .content-list-content {
   font-size: 14px;
   clear: both;
   overflow: hidden;
   padding: 10px 20px;
 }
-div#fly2-storage .main-content .content-list .content-list-footer {
+div#webNote-storage .main-content .content-list .content-list-footer {
   font-size: 13px;
   line-height: 30px;
   height: 30px;
-  margin-top: 20px;
-  padding-left: 20px;
+  margin: 20px 0 0 0;
+  padding: 0 0 0 20px;
   border-top: 1px solid #f2f2f5;
 }
-div#fly2-storage .main-content .content-list .content-list-footer a {
-  margin-left: 10px;
+div#webNote-storage .main-content .content-list .content-list-footer a {
+  margin: 0 0 0 10px;
+  border: 0;
   cursor: pointer;
+  text-decoration: none;
   color: #38f;
 }

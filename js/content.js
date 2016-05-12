@@ -18,7 +18,7 @@ require(['msg', 'jquery', 'content.html'], function(Msg, $, context) {
                 case 'OPEN':
                     {
                         selectedText = "";
-                        fly2_showStorage();
+                        webNote_showStorage();
                         break;
                     }
                 case 'SWITCH':
@@ -26,8 +26,8 @@ require(['msg', 'jquery', 'content.html'], function(Msg, $, context) {
                         if (request.data === 'on') {
                             ifReady = true;
                         } else {
-                            if ($("#fly2-storage").is(':visible')) {
-                                fly2_closeStorage();
+                            if ($("#webNote-storage").is(':visible')) {
+                                webNote_closeStorage();
                             }
                             ifReady = false;
                         }
@@ -48,104 +48,101 @@ require(['msg', 'jquery', 'content.html'], function(Msg, $, context) {
         var $wrapper = $(context.data);
         $body.append($wrapper);
 
-        $("#fly2-wrapper .search-storage").bind("click", fly2_showStorage);
-        $("#fly2-wrapper .search-call").bind("click", function() {
-            window.open("http://www.taobao.com/webww/ww.php?ver=3&touid=" + selectedText + "&siteid=cntaobao&status=1&charset=utf-8");
-        });
+        $("#webNote-wrapper .search-storage").bind("click", webNote_showStorage);
 
-        $("body").bind("mouseup", fly2_initWrapper);
+        $("body").bind("mouseup", webNote_initWrapper);
 
-        function fly2_showWrapper() {
+        function webNote_showWrapper() {
             ifShowWrapper = true;
-            $("#fly2-wrapper").show();
+            $("#webNote-wrapper").show();
         }
 
-        function fly2_closeWrapper() {
+        function webNote_closeWrapper() {
             if (ifShowWrapper) {
                 ifShowWrapper = false;
-                $("#fly2-wrapper").hide();
+                $("#webNote-wrapper").hide();
 
                 //解绑事件
-                $("body").unbind("click", fly2_bodyCloseWrapper);
+                $("body").unbind("click", webNote_bodyCloseWrapper);
             }
         }
 
-        function fly2_moveWrapper(event) {
-            var $fly2_wrapper = $("#fly2-wrapper");
+        function webNote_moveWrapper(event) {
+            var $webNote_wrapper = $("#webNote-wrapper");
             var posX = event.pageX + 5;
             var posY = event.pageY + 5;
 
             //判断是否越界
-            if (posX + $fly2_wrapper.width() + parseInt($fly2_wrapper.css("padding-left")) + parseInt($fly2_wrapper.css("padding-right")) > ($(window).width() + $(window).scrollLeft())) {
-                posX = $(window).width() - $fly2_wrapper.width() - parseInt($fly2_wrapper.css("padding-left")) - parseInt($fly2_wrapper.css("padding-right")) - 20;
+            if (posX + $webNote_wrapper.width() + parseInt($webNote_wrapper.css("padding-left")) + parseInt($webNote_wrapper.css("padding-right")) > ($(window).width() + $(window).scrollLeft())) {
+                posX = $(window).width() - $webNote_wrapper.width() - parseInt($webNote_wrapper.css("padding-left")) - parseInt($webNote_wrapper.css("padding-right")) - 20;
             }
-            if (posY + $fly2_wrapper.height() + parseInt($fly2_wrapper.css("padding-top")) + parseInt($fly2_wrapper.css("padding-bottom")) > ($(window).height() + $(window).scrollTop())) {
-                posY = $(window).height() - $fly2_wrapper.height() - parseInt($fly2_wrapper.css("padding-top")) - parseInt($fly2_wrapper.css("padding-bottom")) - 20;
+            if (posY + $webNote_wrapper.height() + parseInt($webNote_wrapper.css("padding-top")) + parseInt($webNote_wrapper.css("padding-bottom")) > ($(window).height() + $(window).scrollTop())) {
+                posY = $(window).height() - $webNote_wrapper.height() - parseInt($webNote_wrapper.css("padding-top")) - parseInt($webNote_wrapper.css("padding-bottom")) - 20;
             }
 
             //修改浮层位置
-            $fly2_wrapper.css({
+            $webNote_wrapper.css({
                 top: posY,
                 left: posX
             });
         }
 
-        function fly2_initWrapper(event) {
+        function webNote_initWrapper(event) {
             if (!ifReady) return;
             //获取选中的文本
             if (window.getSelection().toString() != "") {
                 selectedText = window.getSelection().toString();
-                $("#fly2-wrapper .fly2-storage-search input").val(selectedText);
-                fly2_moveWrapper(event); //更新浮层位置
-                fly2_showWrapper(); //打开浮层
+                $("#webNote-wrapper .webNote-storage-search input").val(selectedText);
+                webNote_moveWrapper(event); //更新浮层位置
+                webNote_showWrapper(); //打开浮层
 
                 //添加关闭按钮和body的点击事件--用于关闭浮层
-                $("body").bind("click", fly2_bodyCloseWrapper);
+                $("body").bind("click", webNote_bodyCloseWrapper);
             }
         }
 
-        function fly2_bodyCloseWrapper(event) {
-            if (window.getSelection().toString() == "" && event.target.id != "fly2-wrapper") {
-                fly2_closeWrapper(); //关闭浮层
+        function webNote_bodyCloseWrapper(event) {
+            if (window.getSelection().toString() == "" && event.target.id != "webNote-wrapper") {
+                webNote_closeWrapper(); //关闭浮层
             }
         }
 
-        function fly2_showStorage() {
-            fly2_closeWrapper(); //关闭浮层
+        function webNote_showStorage() {
+            webNote_closeWrapper(); //关闭浮层
             ifShowStorage = true;
-            if (selectedText !== "" || !$("#fly2-storage").is(':visible')) {
-                $("#fly2-storage .fly2-storage-search input").val(selectedText);
-                fly2_searchStorage(selectedText);
+            if (selectedText !== "" || !$("#webNote-storage").is(':visible')) {
+                $("#webNote-storage .webNote-storage-search input").val(selectedText);
+                webNote_searchStorage(selectedText);
             }
 
-            $("#fly2-storage").fadeIn('slow')
+            $("#webNote-storage").fadeIn('slow')
                 .width($(window).width() * 0.8)
                 .height($(window).height() * 0.8)
                 .css({
                     left: $(window).width() * 0.1,
                     top: $(window).height() * 0.1
                 });
-            $("#fly2-storage .main-content").height($("#fly2-storage").height() * 0.95 - $("#fly2-storage .fly2-header").height() - parseInt($("#fly2-storage .fly2-header").css("margin-bottom")));
+            $("#webNote-storage .main-content").height($("#webNote-storage").height() * 0.95 - $("#webNote-storage .webNote-header").height() - parseInt($("#webNote-storage .webNote-header").css("margin-bottom")));
 
-            $("#fly2-storage .closeFly2").bind("click", fly2_closeStorage);
-            $("#fly2-storage .fly2-storage-search input").bind("input propertychange", fly2_searchStorage);
+            $("#webNote-storage .closeWebNote").bind("click", webNote_closeStorage);
+            $("#webNote-storage .webNote-storage-search input").bind("input propertychange", webNote_searchStorage);
         }
 
-        function fly2_closeStorage() {
+        function webNote_closeStorage() {
             if (ifShowStorage) {
                 ifShowStorage = false;
-                $("#fly2-storage").fadeOut('slow');
+                $("#webNote-storage").fadeOut('slow');
 
                 //解绑事件
-                $("#fly2-storage .closeFly2").unbind("click", fly2_closeStorage);
-                $("#fly2-storage .fly2-storage-search input").unbind("keypress", fly2_searchStorage);
+                $("#webNote-storage .closeFly2").unbind("click", webNote_closeStorage);
+                $("#webNote-storage .webNote-storage-search input").unbind("keypress", webNote_searchStorage);
                 //重新绑定事件
-                $("body").bind("mouseup", fly2_initWrapper);
+                $("body").bind("mouseup", webNote_initWrapper);
             }
         }
 
-        function fly2_searchStorage() {
-            msg.send('SEARCH', $("#fly2-storage .fly2-storage-search input").val(), function(response) {
+        function webNote_searchStorage() {
+            msg.send('SEARCH', $("#webNote-storage .webNote-storage-search input").val(), function(response) {
                 var html = '';
 
                 $(response.data).map(function(index, elem) {
@@ -158,34 +155,32 @@ require(['msg', 'jquery', 'content.html'], function(Msg, $, context) {
                     html += '</div></div>';
                 });
                 if (html != '') {
-                    $("#fly2-storage .main-content").empty().append($(html));
-                    $("#fly2-storage .content-list-content").map(function(index, elem) {
+                    $("#webNote-storage .main-content").empty().append($(html));
+                    $("#webNote-storage .content-list-content").map(function(index, elem) {
                         if ($(elem).height() > maxHeight) {
                             $(elem)
                                 .height(maxHeight)
                                 .parent()
-                                .append($('<div class="content-list-footer"><i class="fa fa-caret-down"></i><a class="content-list-footer-more">查看更多</a></div>'));
+                                .append($('<div class="content-list-footer"><i class="fa fa-caret-down"></i><a class="content-list-footer-more">展开</a></div>'));
                         }
                     });
-                    $("#fly2-storage .content-list")
-                        .css({
-                            visibility: "visible"
-                        })
+                    $("#webNote-storage .content-list")
                         .find(".content-list-footer-more")
-                        .bind("click", fly2_toggleMore);
+                        .bind("click", webNote_toggleMore);
                 } else {
                     html = '<div class="content-list-empty">没有在本地搜索到相关知识库哦！</div>';
-                    $("#fly2-storage .main-content").empty().append($(html));
+                    $("#webNote-storage .main-content").empty().append($(html));
                 }
             });
         }
 
-        function fly2_toggleMore(event) {
+        function webNote_toggleMore(event) {
             if (this.toggle == undefined) {
                 this.toggle = true;
             }
             if (this.toggle) {
                 $(event.target)
+                    .html('收起')
                     .parent()
                     .siblings('.content-list-content')
                     .css({
@@ -197,6 +192,7 @@ require(['msg', 'jquery', 'content.html'], function(Msg, $, context) {
                     .addClass('fa-caret-up');
             } else {
                 $(event.target)
+                    .html('展开')
                     .parent()
                     .siblings('.content-list-content')
                     .css({
