@@ -22,8 +22,9 @@ webNote/
 │   ├── fontawesome-webfont.woff2  //fontawesome字体woff2文件
 │   ├── FontAwesome.otf            //fontawesome字体otf文件
 ├── html/                          //html文件目录
-│   ├── popup.html                 //popup页面html文件
-│   └── option.html                //配置页html文件
+│   ├── content.html               //页面html文件
+│   ├── option.html                //配置页html文件
+│   └── popup.html                 //popup页面html文件
 ├── icon/                          //icon文件目录
 │   ├── logo128.png                //logo(128*128)
 │   ├── logo16.png                 //logo(16*16)
@@ -41,7 +42,7 @@ webNote/
 │   ├── module/                    //自定义AMD模块目录
 │   │   ├── article.js             //笔记对象(依赖于localDatabase模块)
 │   │   ├── config.js              //软件配置对象(依赖于localDatabase模块)
-│   │   ├── content.html.js        //
+│   │   ├── content.html.js        //页面html模板模块
 │   │   ├── localDatabase.js       //本地数据db操作模块
 │   │   └── msg.js                 //程序内部通信模块
 │   ├── background.js              //后台页面js文件
@@ -68,7 +69,8 @@ webNote/
 - 将option.js中的window.confirm()以更友好的方式做交互。
 - 增加文件拖入功能来实现文件导入。
 - 实现更好的自适应布局。
-- 将日期信息拓展至时间（即从`YYYY.MM.DD`拓展至`YYYY.MM.DD HH:MM:SS`）
+- 将日期信息拓展至时间(即从`YYYY.MM.DD`拓展至`YYYY.MM.DD HH:MM:SS`)。
+- content页改变尺寸时重新计算大小。
 
 ## 其他
 
