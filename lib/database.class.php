@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @todo 1)增加debug功能
+ *       2)完善show_error功能
+ */
 class Database {
     private $mysqli;
     private $db_host;
@@ -38,9 +42,30 @@ class Database {
         return $this->mysqli->query($sql);
     }
 
-    public function show_error($message = '', $sql = '') {
-        ;
+    //简化查询select
+    public function select($table, $columnName = '*', $condition = '') {
+        $condition = $condition ? ' Where ' . $condition : NULL;
+        return $this->query('SELECT ' . $columnName . ' FROM ' . $table . $condition);
     }
+
+    //简化删除delete
+    public function delete($table, $condition) {
+        return $result = $this->query('DELETE FROM ' . $table . ' WHERE ' . $condition);
+    }
+
+    //简化插入insert
+    public function insert($table, $columnName, $value) {
+        return $result = $this->query('INSERT INTO ' . $table . ' (' . $columnName . ') VALUES (' . $value . ')');
+    }
+
+    //简化修改update
+    public function update($table, $mod_content, $condition) {
+        return $result = $this->query('UPDATE ' . $table . ' SET ' . $mod_content . ' WHERE ' . $condition);
+    }
+
+    // public function show_error($message = '', $sql = '') {
+    //     ;
+    // }
 } // END
 
 /* END file */
