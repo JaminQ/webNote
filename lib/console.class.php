@@ -37,6 +37,7 @@ class Console {
     private $log_file;
     private $file;
     private $fp;
+    private $str;
 
     public function __construct($log_path, $log_file) {
         $this->log_path = $log_path;
@@ -67,7 +68,7 @@ class Console {
      */
     public function log($str, $if_clear = false) {
         $this->before_write($str, $if_clear);
-        fwrite($this->fp, '[Log]   ' . date('[y-m-d H:i:s]') . ' ' . $str . "\n");
+        fwrite($this->fp, '[Log]   ' . date('[y-m-d H:i:s]') . ' ' . $this->str . "\n");
         fclose($this->fp);
     }
 
@@ -90,7 +91,7 @@ class Console {
      */
     public function warn($str, $if_clear = false) {
         $this->before_write($str, $if_clear);
-        fwrite($this->fp, '[Warn]  ' . date('[y-m-d H:i:s]') . ' ' . $str . "\n");
+        fwrite($this->fp, '[Warn]  ' . date('[y-m-d H:i:s]') . ' ' . $this->str . "\n");
         fclose($this->fp);
     }
 
@@ -113,7 +114,7 @@ class Console {
      */
     public function error($str, $if_clear = false) {
         $this->before_write($str, $if_clear);
-        fwrite($this->fp, '[Error] ' . date('[y-m-d H:i:s]') . ' ' . $str . "\n");
+        fwrite($this->fp, '[Error] ' . date('[y-m-d H:i:s]') . ' ' . $this->str . "\n");
         fclose($this->fp);
     }
 
@@ -136,7 +137,7 @@ class Console {
      */
     public function info($str, $if_clear = false) {
         $this->before_write($str, $if_clear);
-        fwrite($this->fp, '[Info]  ' . date('[y-m-d H:i:s]') . ' ' . $str . "\n");
+        fwrite($this->fp, '[Info]  ' . date('[y-m-d H:i:s]') . ' ' . $this->str . "\n");
         fclose($this->fp);
     }
 
@@ -159,7 +160,7 @@ class Console {
      */
     public function debug($str, $if_clear = false) {
         $this->before_write($str, $if_clear);
-        fwrite($this->fp, '[Debug] ' . date('[y-m-d H:i:s]') . ' ' . $str . "\n");
+        fwrite($this->fp, '[Debug] ' . date('[y-m-d H:i:s]') . ' ' . $this->str . "\n");
         fclose($this->fp);
     }
 
@@ -176,8 +177,10 @@ class Console {
 
     // to do something before write data to file
     private function before_write($str, $if_clear) {
-        if (!is_string($str)) { // if the type of parameter `$str` is not `string`, then encode it into `string` type, skip otherwise
-            $str = json_encode($str);
+        if (!is_string($str)) { // if the type of parameter `$str` is not `string`, then encode it into `string` type, store its value in property `str` otherwise
+            $this->str = json_encode($str);
+        } else {
+            $this->str = $str;
         }
 
         $this->check_path();
