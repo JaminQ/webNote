@@ -81,6 +81,30 @@ class Controller {
 
         $this->console->debug('"update_password" end' . "\n");
     }
+
+    public function action_sync_to_server() {
+        $this->console->debug('"sync_to_server" start');
+
+        require_once __DIR__ . '/action/action_sync_to_server.php';
+
+        $this->console->debug('"sync_to_server" end' . "\n");
+    }
+
+    public function action_sync_to_local() {
+        $this->console->debug('"sync_to_local" start');
+
+        require_once __DIR__ . '/action/action_sync_to_local.php';
+
+        $this->console->debug('"sync_to_local" end' . "\n");
+    }
+
+    public function action_get_server_datainfo() {
+        $this->console->debug('"get_server_datainfo" start');
+
+        require_once __DIR__ . '/action/action_get_server_datainfo.php';
+
+        $this->console->debug('"get_server_datainfo" end' . "\n");
+    }
 } // END
 
 /* END file */
