@@ -25,6 +25,8 @@ CREATE TRIGGER `tg_ub_webNote_noteData`
     BEGIN
         IF(OLD.`data`<>NEW.`data`) THEN
             SET NEW.update_time=NOW(),NEW.sync_time=NOW();
+        ELSEIF(OLD.`data` IS NULL AND NEW.`data` IS NOT NULL) THEN
+            SET NEW.update_time=NOW(),NEW.sync_time=NOW();
         ELSE
             SET NEW.update_time=NOW();
         END IF;
