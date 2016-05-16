@@ -3,7 +3,7 @@
 define(function() {
     'use strict';
     var Service = function() {
-        this.URL = '//localhost:80/webNote/index.php';
+        this.URL = 'http://localhost:80/webNote/index.php';
     };
     return Service;
 });
