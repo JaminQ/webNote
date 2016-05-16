@@ -40,11 +40,11 @@ webNote/
 │   │   ├── require.min.js         //第三方库js文件: RequireJS (http://requirejs.org/)
 │   │   └── serializeObject.js     //自行编写的用于将表单元素序列化为对象的jQuery插件
 │   ├── module/                    //自定义AMD模块目录
-│   │   ├── article.js             //笔记对象(依赖于localDatabase模块)
-│   │   ├── config.js              //软件配置对象(依赖于localDatabase模块)
-│   │   ├── content.html.js        //页面html模板模块
-│   │   ├── localDatabase.js       //本地数据db操作模块
-│   │   └── msg.js                 //程序内部通信模块
+│   │   ├── article.js             //模块: 笔记对象(依赖于localDatabase模块)
+│   │   ├── config.js              //模块: 软件配置对象(依赖于localDatabase模块)
+│   │   ├── content.html.js        //模块: 页面html模板
+│   │   ├── localDatabase.js       //模块: 本地数据db操作
+│   │   └── msg.js                 //模块: 程序内部通信
 │   ├── background.js              //后台页面js文件
 │   ├── content.js                 //页面js文件
 │   ├── option.js                  //配置页js文件
@@ -71,6 +71,8 @@ webNote/
 - 实现更好的自适应布局。
 - 将日期信息拓展至时间(即从`YYYY.MM.DD`拓展至`YYYY.MM.DD HH:MM:SS`)。
 - content页改变尺寸时重新计算大小。
+- Add func `forget password`.
+- Use `Session support` to store user's login status in server rather than store it in client by `localstorage`.
 
 ## 其他
 
