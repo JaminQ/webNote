@@ -34,7 +34,7 @@
         "js": ["js/lib/require.min.js", "js/require.content.js", "js/require.config.js", "js/content.js"]
     }],
 
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "content_security_policy": "script-src 'self' http://localhost:80/ 'unsafe-eval'; object-src 'self'",
 
     "web_accessible_resources": ["js/*", "css/*", "font/*", "icon/*"],
     "author": "JaminQian"
