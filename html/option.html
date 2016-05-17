@@ -23,6 +23,7 @@
                 <li class="opt" data-toggle="trash">回收站</li>
                 <li class="opt" data-toggle="export">数据导出</li>
                 <li class="opt" data-toggle="import">数据导入</li>
+                <li class="opt" data-toggle="sync">数据同步</li>
                 <li class="opt" data-toggle="edit" style="display: none;">编辑知识</li>
             </ul>
         </div>
@@ -31,6 +32,7 @@
             <div id="look" class="tab-pane">
                 <div class="article-box"></div>
             </div>
+
             <div id="add" class="tab-pane">
                 <div class="article-box new-article">
                     <div>
@@ -45,9 +47,11 @@
                     </div>
                 </div>
             </div>
+
             <div id="trash" class="tab-pane">
                 <div class="article-box"></div>
             </div>
+
             <div id="export" class="tab-pane">
                 <div class="article-box">
                     <div class="btn-box-center">
@@ -64,6 +68,7 @@
                     </div>
                 </div>
             </div>
+
             <div id="import" class="tab-pane">
                 <div class="article-box">
                     <div class="btn-box-center">
@@ -80,6 +85,110 @@
                     </div>
                 </div>
             </div>
+
+            <div id="sync" class="tab-pane">
+                <div class="article-box">
+                    <div id="login">
+                        <div class="login_header">
+                            <span>请先登陆</span>
+                            <a id="change_login_mode" data-toggle="regist">还没有账号？</a>
+                        </div>
+                        <form id="login_form">
+                            <div>
+                                <label for="login_account">账号</label>
+                                <input id="login_account" name="account" type="text" required>
+                            </div>
+
+                            <div>
+                                <label for="login_password">密码</label>
+                                <input id="login_password" name="password" type="password" required>
+                            </div>
+
+                            <div>
+                                <button type="submit">登陆</button>
+                            </div>
+                        </form>
+                        <form id="regist_form">
+                            <div>
+                                <label for="regist_account">账号</label>
+                                <input id="regist_account" name="account" type="text" required>
+                            </div>
+
+                            <div>
+                                <label for="regist_password">密码</label>
+                                <input id="regist_password" name="password" type="password" required>
+                            </div>
+
+                            <div>
+                                <label for="regist_password">再输入一次密码</label>
+                                <input id="regist_password_confirm" name="password_confirm" type="password" required>
+                            </div>
+
+                            <div>
+                                <button type="submit">注册</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="after-login">
+                        <div class="userinfo">
+                            <p><label>用户名：</label><span class="user-name"></span></p>
+                            <p><label>性别：</label><span class="user-sex"></span></p>
+                            <p><label>注册时间：</label><span class="user-create-time"></span></p>
+                            <button id="update-password-btn">修改密码</button>
+                            <button id="update-userinfo-btn">修改个人信息</button>
+                            <button id="logout-btn">注销</button>
+                        </div>
+                        <div class="server-datainfo">
+                            <p><label>云端笔记数量：</label><span class="server-data-list-num"></span></p>
+                            <p><label>云端回收站数量：</label><span class="server-data-removed-num"></span></p>
+                            <p><label>更新时间：</label><span class="server-data-sync-time"></span></p>
+                            <button id="sync-to-server-btn">同步到云端</button>
+                            <button id="sync-to-local-btn">同步到本地</button>
+                        </div>
+                    </div>
+
+                    <div id="update-userinfo">
+                        <form id="update-userinfo_form">
+                            <div>
+                                <label for="update_name">用户名</label>
+                                <input id="update_name" name="name" type="text" required>
+                            </div>
+
+                            <div>
+                                <label for="update_sex_man">性别</label>
+                                <label for="update_sex_man">男</label>
+                                <input id="update_sex_man" name="sex" type="radio" value="男">
+                                <label for="update_sex_woman">女</label>
+                                <input id="update_sex_woman" name="sex" type="radio" value="女">
+                            </div>
+
+                            <div>
+                                <button type="submit">修改</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="update-password">
+                        <form id="update-password_form">
+                            <div>
+                                <label for="update_password">密码</label>
+                                <input id="update_password" name="password" type="password" required>
+                            </div>
+
+                            <div>
+                                <label for="update_password_confirm">再输入一次密码</label>
+                                <input id="update_password_confirm" name="password_confirm" type="password" required>
+                            </div>
+
+                            <div>
+                                <button type="submit">修改</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <div id="edit" class="tab-pane">
                 <div class="article-box edit-article">
                     <div>
@@ -99,6 +208,7 @@
 
     <script src="../js/lib/require.min.js"></script>
     <script src="../js/require.config.js"></script>
+    <script src="../js/lib/serializeObject.js"></script>
     <script src="../js/lib/nicEdit.min.js"></script>
     <script src="../js/option.js"></script>
 </body>
