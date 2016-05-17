@@ -62,6 +62,7 @@ webNote/
 
 ## TODO
 
+- bugfix: When exec func `syncToLocal` or func `import-data` will probably make data duplicate(when `list` and `trash` have the same article).
 - 增加新增笔记时的article id唯一性检测。
 - 增加导入数据时的article id唯一性检测。
 - 在popup页里关闭插件时应对每个tab进行通信。
