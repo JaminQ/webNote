@@ -194,6 +194,7 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
                         user.make(data.data);
                         $('#login').remove();
                         var $userinfo = $('#after-login .userinfo');
+                        $userinfo.find('.user-account').text(user.account);
                         $userinfo.find('.user-name').text(user.name);
                         $userinfo.find('.user-sex').text(user.sex);
                         $userinfo.find('.user-create-time').text(user.create_time);
