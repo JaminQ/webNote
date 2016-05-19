@@ -53,35 +53,31 @@
             </div>
 
             <div id="export" class="tab-pane">
-                <div class="article-box">
-                    <div class="btn-box-center">
-                        <button id="export-btn">
-                            <i class="fa fa-upload"></i>
-                        </button>
-                        <div>
-                            <p>
-                                <b>导出数据到文件</b>
-                            </p>
-                            <p>您可以把本地数据导出为文件。</p>
-                            <p>可方便于备份，或者与他人分享您的笔记。</p>
-                        </div>
+                <div class="article-box btn-box-center">
+                    <button id="export-btn">
+                        <i class="fa fa-upload"></i>
+                    </button>
+                    <div>
+                        <p>
+                            <b>导出数据到文件</b>
+                        </p>
+                        <p>您可以把本地数据导出为文件。</p>
+                        <p>可方便于备份，或者与他人分享您的笔记。</p>
                     </div>
                 </div>
             </div>
 
             <div id="import" class="tab-pane">
-                <div class="article-box">
-                    <div class="btn-box-center">
-                        <button id="import-btn">
-                            <i class="fa fa-download"></i>
-                        </button>
-                        <div>
-                            <p>
-                                <b>从文件导入数据</b>
-                            </p>
-                            <p>您可以从文件扩充本地数据。</p>
-                            <p>您原有的数据不会丢失，会扩充您的笔记。</p>
-                        </div>
+                <div class="article-box btn-box-center">
+                    <button id="import-btn">
+                        <i class="fa fa-download"></i>
+                    </button>
+                    <div>
+                        <p>
+                            <b>从文件导入数据</b>
+                        </p>
+                        <p>您可以从文件扩充本地数据。</p>
+                        <p>您原有的数据不会丢失，会扩充您的笔记。</p>
                     </div>
                 </div>
             </div>
@@ -90,81 +86,99 @@
                 <div class="article-box">
                     <div id="login">
                         <div class="login_header">
-                            <span>请先登陆</span>
+                            <p>请先登录</p>
                             <a id="change_login_mode" data-toggle="regist">还没有账号？</a>
                         </div>
                         <form id="login_form">
-                            <div>
-                                <label for="login_account">账号</label>
+                            <div class="form_row">
+                                <label for="login_account"><i class="fa fa-user"></i></label>
                                 <input id="login_account" name="account" type="text" required>
                             </div>
 
-                            <div>
-                                <label for="login_password">密码</label>
+                            <div class="form_row">
+                                <label for="login_password"><i class="fa fa-unlock-alt"></i></label>
                                 <input id="login_password" name="password" type="password" required>
                             </div>
 
-                            <div>
-                                <button type="submit">登陆</button>
+                            <div class="form_row">
+                                <button type="submit">登 陆</button>
                             </div>
                         </form>
                         <form id="regist_form">
-                            <div>
-                                <label for="regist_account">账号</label>
+                            <div class="form_row">
+                                <label for="regist_account"><i class="fa fa-user"></i></label>
                                 <input id="regist_account" name="account" type="text" required>
                             </div>
 
-                            <div>
-                                <label for="regist_password">密码</label>
+                            <div class="form_row">
+                                <label for="regist_password"><i class="fa fa-unlock-alt"></i></label>
                                 <input id="regist_password" name="password" type="password" required>
                             </div>
 
-                            <div>
-                                <label for="regist_password">再输入一次密码</label>
+                            <div class="form_row">
+                                <label for="regist_password"><i class="fa fa-unlock-alt"></i></label>
                                 <input id="regist_password_confirm" name="password_confirm" type="password" required>
                             </div>
 
-                            <div>
-                                <button type="submit">注册</button>
+                            <div class="form_row">
+                                <button type="submit">注 册</button>
                             </div>
                         </form>
                     </div>
 
                     <div id="after-login">
-                        <div class="userinfo">
-                            <p><label>账号：</label><span class="user-account"></span></p>
-                            <p><label>用户名：</label><span class="user-name"></span></p>
-                            <p><label>性别：</label><span class="user-sex"></span></p>
-                            <p><label>注册时间：</label><span class="user-create-time"></span></p>
-                            <button id="update-password-btn">修改密码</button>
-                            <button id="update-userinfo-btn">修改个人信息</button>
-                            <button id="logout-btn">注销</button>
+                        <div class="userinfo info-wrapper">
+                            <div class="info-logo">
+                                <i class="fa fa-user"></i>
+                            </div>
+
+                            <div class="info-detail">
+                                <p><label>账号：</label><span class="user-account"></span></p>
+                                <p><label>用户名：</label><span class="user-name"></span></p>
+                                <p><label>性别：</label><span class="user-sex"></span></p>
+                                <p><label>注册时间：</label><span class="user-create-time"></span></p>
+                            </div>
+
+                            <div class="info-func">
+                                <button id="update-password-btn">修改密码</button>
+                                <button id="update-userinfo-btn">修改个人信息</button>
+                                <button id="logout-btn">注销</button>
+                            </div>
                         </div>
-                        <div class="server-datainfo">
-                            <p><label>云端笔记数量：</label><span class="server-data-list-num"></span></p>
-                            <p><label>云端回收站数量：</label><span class="server-data-removed-num"></span></p>
-                            <p><label>更新时间：</label><span class="server-data-sync-time"></span></p>
-                            <button id="sync-to-server-btn">同步到云端</button>
-                            <button id="sync-to-local-btn">同步到本地</button>
+                        <div class="server-datainfo info-wrapper">
+                            <div class="info-logo">
+                                <i class="fa fa-bookmark"></i>
+                            </div>
+
+                            <div class="info-detail">
+                                <p><label>云端笔记数量：</label><span class="server-data-list-num"></span></p>
+                                <p><label>云端回收站数量：</label><span class="server-data-removed-num"></span></p>
+                                <p><label>更新时间：</label><span class="server-data-sync-time"></span></p>
+                            </div>
+
+                            <div class="info-func">
+                                <button id="sync-to-server-btn">同步到云端</button>
+                                <button id="sync-to-local-btn">同步到本地</button>
+                            </div>
                         </div>
                     </div>
 
                     <div id="update-userinfo">
                         <form id="update-userinfo_form">
-                            <div>
-                                <label for="update_name">用户名</label>
+                            <div class="form_row">
+                                <label for="update_name"><i class="fa fa-user-md"></i></label>
                                 <input id="update_name" name="name" type="text" required>
                             </div>
 
-                            <div>
-                                <label for="update_sex_man">性别</label>
-                                <label for="update_sex_man">男</label>
+                            <div class="form_row">
+                                <label for="update_sex_man"><i class="fa fa-male"></i></label>
+                                <label for="update_sex_man" class="radio_text">男</label>
                                 <input id="update_sex_man" name="sex" type="radio" value="男">
-                                <label for="update_sex_woman">女</label>
+                                <label for="update_sex_woman" class="radio_text">女</label>
                                 <input id="update_sex_woman" name="sex" type="radio" value="女">
                             </div>
 
-                            <div>
+                            <div class="form_row">
                                 <button type="submit">修改</button>
                             </div>
                         </form>
@@ -172,17 +186,17 @@
 
                     <div id="update-password">
                         <form id="update-password_form">
-                            <div>
-                                <label for="update_password">密码</label>
+                            <div class="form_row">
+                                <label for="update_password"><i class="fa fa-unlock-alt"></i></label>
                                 <input id="update_password" name="password" type="password" required>
                             </div>
 
-                            <div>
-                                <label for="update_password_confirm">再输入一次密码</label>
+                            <div class="form_row">
+                                <label for="update_password_confirm"><i class="fa fa-unlock-alt"></i></label>
                                 <input id="update_password_confirm" name="password_confirm" type="password" required>
                             </div>
 
-                            <div>
+                            <div class="form_row">
                                 <button type="submit">修改</button>
                             </div>
                         </form>

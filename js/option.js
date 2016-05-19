@@ -199,7 +199,7 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
                         $userinfo.find('.user-sex').text(user.sex);
                         $userinfo.find('.user-create-time').text(user.create_time);
                         $('#update_name').val(user.name);
-                        switch(user.sex){
+                        switch (user.sex) {
                             case '男':
                                 $('#update_sex_man').attr('checked', true);
                                 break;
@@ -351,6 +351,7 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
             });
             user.syncToServer(localDatabase.toString(), function(data) {
                 if (data.status === 1) {
+                    showMsg(data.msg);
                     getServerDatainfo();
                 } else {
                     console.log(data.msg);
@@ -363,6 +364,7 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
         $('#sync-to-local-btn').click(function() {
             user.syncToLocal(function(data) {
                 if (data.status === 1) {
+                    showMsg(data.msg);
                     localDatabase.make(data.data.data);
                 } else {
                     console.log(data.msg);
@@ -372,7 +374,7 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
             });
         });
 
-        $('#update-userinfo-btn').click(function(){
+        $('#update-userinfo-btn').click(function() {
             $('#update-userinfo_form').show();
         });
 
@@ -380,8 +382,8 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
             var formdata = $(this).serializeObject();
             user.make(formdata);
             user.updateUserinfo(function(data) {
-                if(data.status === 1) {
-                    console.log(data);
+                if (data.status === 1) {
+                    showMsg(data.msg);
                     $('#update-userinfo_form').hide();
                     getUserinfo();
                 } else {
@@ -393,17 +395,21 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
             return false;
         });
 
-        $('#update-password-btn').click(function(){
+        $('#update-password-btn').click(function() {
             $('#update-password_form').show();
         });
 
         $('#update-password_form').on('submit', function() {
             var formdata = $(this).serializeObject();
+            if (formdata.password !== formdata.password_confirm) {
+                showMsg('两次输入的密码不一样');
+                return false;
+            }
             delete formdata['password_confirm'];
             user.make(formdata);
             user.updatePassword(function(data) {
-                if(data.status === 1) {
-                    console.log(data);
+                if (data.status === 1) {
+                    showMsg(data.msg);
                     $('#update-password_form').hide();
                 } else {
                     console.log(data.msg);
@@ -424,12 +430,13 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
                     user.make(formdata);
                     user.login(function(data) {
                         if (data.status === 1) {
+                            showMsg(data.msg);
                             user.setId(data.data.id);
                             $('#after-login').show();
                             getUserinfo();
                             getServerDatainfo();
                         } else {
-                            console.log(data.msg);
+                            showMsg(data.msg);
                         }
                     }, function(data) {
                         console.log(data);
@@ -439,32 +446,38 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
 
                 $('#regist_form').on('submit', function() {
                     var formdata = $(this).serializeObject();
+                    if (formdata.password !== formdata.password_confirm) {
+                        showMsg('两次输入的密码不一样');
+                        return false;
+                    }
                     delete formdata['password_confirm'];
                     user.make(formdata);
                     user.checkBeforeRegist(function(data) {
                         if (data.status === 1) {
                             user.regist(function(data) {
                                 if (data.status === 1) {
+                                    var regist_data = data;
                                     user.login(function(data) {
                                         if (data.status === 1) {
+                                            showMsg(regist_data.msg);
                                             user.setId(data.data.id);
                                             $('#after-login').show();
                                             getUserinfo();
                                             getServerDatainfo();
                                         } else {
-                                            console.log(data.msg);
+                                            showMsg(data.msg);
                                         }
                                     }, function(data) {
                                         console.log(data);
                                     });
                                 } else {
-                                    console.log(data.msg);
+                                    showMsg(data.msg);
                                 }
                             }, function(data) {
                                 console.log(data);
                             });
                         } else {
-                            console.log(data.msg);
+                            showMsg(data.msg);
                         }
                     }, function(data) {
                         console.log(data);
@@ -474,18 +487,23 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
 
                 $('#change_login_mode').click(function(event) {
                     var $target = $(event.target);
+                    console.log();
                     switch ($target.data('toggle')) {
                         case 'regist':
                             $('#login_form').hide();
                             $('#regist_form').show();
-                            $target.text('返回登录界面');
-                            $target.data('toggle', 'login');
+                            $target
+                                .text('返回登录界面')
+                                .data('toggle', 'login')
+                                .prev().text('新用户注册');
                             break;
                         case 'login':
                             $('#regist_form').hide();
                             $('#login_form').show();
-                            $target.text('还没有账号？');
-                            $target.data('toggle', 'regist');
+                            $target
+                                .text('还没有账号？')
+                                .data('toggle', 'regist')
+                                .prev().text('请先登录');
                             break;
                     }
                 });

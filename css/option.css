@@ -95,6 +95,7 @@ a:hover {
 }
 .content .tab-content {
   margin-left: 200px;
+  height: 100%;
 }
 .content .tab-content .tab-pane {
   display: none;
@@ -145,16 +146,7 @@ a:hover {
   text-align: center;
   color: #555;
 }
-.content .tab-content .tab-pane .article-box .btn-box-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 500px;
-  height: 135px;
-  margin-top: -67.5px;
-  margin-left: -250px;
-}
-.content .tab-content .tab-pane .article-box .btn-box-center button {
+.content .tab-content .tab-pane .article-box.btn-box-center button {
   font-size: 72px;
   display: inline-block;
   padding: 20px;
@@ -166,15 +158,15 @@ a:hover {
   background: #1a7bb9;
   outline: none;
 }
-.content .tab-content .tab-pane .article-box .btn-box-center button:hover {
+.content .tab-content .tab-pane .article-box.btn-box-center button:hover {
   transform: scale(1.1);
 }
-.content .tab-content .tab-pane .article-box .btn-box-center div {
+.content .tab-content .tab-pane .article-box.btn-box-center div {
   font-size: 16px;
   display: inline-block;
   margin-left: 30px;
 }
-.content .tab-content .tab-pane .article-box .btn-box-center div b {
+.content .tab-content .tab-pane .article-box.btn-box-center div b {
   font-size: 18px;
 }
 .content .tab-content .tab-pane .new-article,
@@ -225,6 +217,129 @@ a:hover {
 .content .tab-content .tab-pane .edit-article .btn-primary {
   color: #fff;
   background-color: #18a689;
+}
+#export,
+#import,
+#sync {
+  height: 100%;
+}
+#export .article-box,
+#import .article-box,
+#sync .article-box {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#sync .article-box #login .login_header {
+  text-align: center;
+}
+#sync .article-box #login .login_header p {
+  font-size: 32px;
+  color: #1a7bb9;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+#sync .article-box #login form,
+#sync .article-box #update-userinfo form,
+#sync .article-box #update-password form {
+  box-shadow: 0 0 10px 0 #c8c8c8;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: white;
+}
+#sync .article-box #login form .form_row,
+#sync .article-box #update-userinfo form .form_row,
+#sync .article-box #update-password form .form_row {
+  margin: 10px 0;
+  text-align: center;
+}
+#sync .article-box #login form .form_row label,
+#sync .article-box #update-userinfo form .form_row label,
+#sync .article-box #update-password form .form_row label {
+  display: inline-block;
+  font-size: 17px;
+  width: 17px;
+  height: 28px;
+  line-height: 28px;
+  color: #1a7bb9;
+}
+#sync .article-box #update-userinfo form .form_row label.radio_text {
+  margin: 0 5px;
+}
+#sync .article-box #login form .form_row input,
+#sync .article-box #update-userinfo form .form_row input,
+#sync .article-box #update-password form .form_row input {
+  display: inline-block;
+}
+#sync .article-box #login form .form_row input[type="text"],
+#sync .article-box #update-userinfo form .form_row input[type="text"],
+#sync .article-box #update-password form .form_row input[type="text"],
+#sync .article-box #login form .form_row input[type="password"],
+#sync .article-box #update-userinfo form .form_row input[type="password"],
+#sync .article-box #update-password form .form_row input[type="password"] {
+  width: 160px;
+  padding: 2px 5px;
+  height: 20px;
+  line-height: 20px;
+}
+#sync .article-box #update-userinfo form .form_row input[type="radio"] {
+  height: 15px;
+}
+#sync .article-box #update-userinfo form .form_row input#update_sex_woman {
+  margin-right: 85px;
+}
+#sync .article-box #login form .form_row button,
+#sync .article-box #update-userinfo form .form_row button,
+#sync .article-box #update-password form .form_row button {
+  font-size: 18px;
+  padding: 10px;
+  cursor: pointer;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  background: #1a7bb9;
+  outline: none;
+  width: 250px;
+}
+#sync .article-box #after-login {
+  overflow: hidden;
+}
+#sync .article-box #after-login .info-wrapper {
+  float: left;
+  width: 200px;
+  padding: 20px 50px;
+}
+#sync .article-box #after-login .info-wrapper.userinfo {
+  border-right: 1px rgba(160, 160, 160, .7) solid;
+}
+#sync .article-box #after-login .info-wrapper.server-datainfo {
+  margin-left: 8px;
+}
+#sync .article-box #after-login .info-wrapper .info-logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+#sync .article-box #after-login .info-wrapper .info-logo i {
+  font-size: 100px;
+  color: #1a7bb9;
+}
+#sync .article-box #after-login .info-wrapper .info-detail {
+  line-height: 25px;
+}
+#sync .article-box #after-login .info-wrapper .info-func {
+  margin-top: 40px;
+}
+#sync .article-box #after-login .info-wrapper .info-func button {
+  font-size: 12px;
+  padding: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  background: #1a7bb9;
+  outline: none;
 }
 #sync #login #regist_form,
 #sync #after-login,
