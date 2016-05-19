@@ -11,7 +11,7 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
             flag = false,
             flagEdit = false,
             Editor = nicEditor,
-            showMsg = function(msg) {
+            showMsg = function(msg, func) {
                 $('.msg').remove();
                 var msgBox = $('<div class="msg"></div>');
                 msgBox.css({
@@ -40,6 +40,9 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
                 }, 50);
                 setTimeout(function() {
                     msgBox.remove();
+                    if (typeof func === 'function') {
+                        func();
+                    }
                 }, 1550);
             },
             makeArticle = function(area, article) {
@@ -341,7 +344,9 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
 
         $('#logout-btn').click(function() {
             user.logout();
-            window.location.reload();
+            showMsg('注销成功', function() {
+                window.location.reload();
+            });
         });
 
         $('#sync-to-server-btn').click(function() {
@@ -378,7 +383,7 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
             $('#update-password').show();
         });
 
-        $('#update-password-dialog-cancel').click(function(){
+        $('#update-password-dialog-cancel').click(function() {
             $('#update-password').hide();
         });
 
@@ -407,7 +412,7 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
             $('#update-userinfo').show();
         });
 
-        $('#update-userinfo-dialog-cancel').click(function(){
+        $('#update-userinfo-dialog-cancel').click(function() {
             $('#update-userinfo').hide();
         });
 
