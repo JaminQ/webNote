@@ -2,16 +2,21 @@
 
 require(['msg', 'jquery', 'content.html'], function(Msg, $, context) {
     $(function() {
-        var msg = new Msg('client');
-        //记录浮层的状态
-        var ifShowWrapper = false;
-        var ifShowStorage = false;
-        //记录浮层配置状态
-        var ifReady = true;
-        //记录用户选中的文字
-        var selectedText = "";
-        //定义消息列表的最大高度
-        var maxHeight = 150;
+        var msg = new Msg('client'),
+            //记录浮层的状态
+            ifShowWrapper = false,
+            ifShowStorage = false,
+            //记录浮层配置状态
+            ifReady = true,
+            //记录用户选中的文字
+            selectedText = "",
+            //定义消息列表的最大高度
+            maxHeight = 150,
+            $body = $("body"),
+            $head = $("head"),
+            $link1 = $("<link rel='stylesheet' type='text/css' href='" + chrome.extension.getURL('css/lib/font-awesome.css') + "'>"),
+            $link2 = $("<link rel='stylesheet' type='text/css' href='" + chrome.extension.getURL('css/content.css') + "'>"),
+            $wrapper = $(context.data);
 
         msg.listen(function(request, send) {
             switch (request.code) {
@@ -40,17 +45,23 @@ require(['msg', 'jquery', 'content.html'], function(Msg, $, context) {
             ifReady = response.data === 'on' ? true : false;
         });
 
-        var $body = $("body");
-        var $head = $("head");
-        var $link1 = $("<link rel='stylesheet' type='text/css' href='" + chrome.extension.getURL('css/lib/font-awesome.css') + "'>");
-        var $link2 = $("<link rel='stylesheet' type='text/css' href='" + chrome.extension.getURL('css/content.css') + "'>")
         $head.append($link1).append($link2);
-        var $wrapper = $(context.data);
         $body.append($wrapper);
 
         $("#webNote-wrapper .search-storage").bind("click", webNote_showStorage);
 
         $("body").bind("mouseup", webNote_initWrapper);
+
+        $(window).resize(function() {
+            $("#webNote-storage")
+                .width($(window).width() * 0.8)
+                .height($(window).height() * 0.8)
+                .css({
+                    left: $(window).width() * 0.1,
+                    top: $(window).height() * 0.1
+                });
+            // $("#webNote-storage .main-content").height($("#webNote-storage").height() * 0.95 - $("#webNote-storage .webNote-header").height() - parseInt($("#webNote-storage .webNote-header").css("margin-bottom")));
+        });
 
         function webNote_showWrapper() {
             ifShowWrapper = true;
@@ -68,9 +79,9 @@ require(['msg', 'jquery', 'content.html'], function(Msg, $, context) {
         }
 
         function webNote_moveWrapper(event) {
-            var $webNote_wrapper = $("#webNote-wrapper");
-            var posX = event.pageX + 5;
-            var posY = event.pageY + 5;
+            var $webNote_wrapper = $("#webNote-wrapper"),
+                posX = event.pageX + 5,
+                posY = event.pageY + 5;
 
             //判断是否越界
             if (posX + $webNote_wrapper.width() + parseInt($webNote_wrapper.css("padding-left")) + parseInt($webNote_wrapper.css("padding-right")) > ($(window).width() + $(window).scrollLeft())) {
@@ -115,7 +126,8 @@ require(['msg', 'jquery', 'content.html'], function(Msg, $, context) {
                 webNote_searchStorage(selectedText);
             }
 
-            $("#webNote-storage").fadeIn('slow')
+            $("#webNote-storage")
+                .fadeIn('slow')
                 .width($(window).width() * 0.8)
                 .height($(window).height() * 0.8)
                 .css({
@@ -168,8 +180,10 @@ require(['msg', 'jquery', 'content.html'], function(Msg, $, context) {
                         .find(".content-list-footer-more")
                         .bind("click", webNote_toggleMore);
                 } else {
-                    html = '<div class="content-list-empty">没有在本地搜索到相关知识库哦！</div>';
-                    $("#webNote-storage .main-content").empty().append($(html));
+                    html = '<div class="content-list-empty">没有在本地搜索到相关笔记哦！</div>';
+                    $("#webNote-storage .main-content")
+                        .empty()
+                        .append($(html));
                 }
             });
         }
