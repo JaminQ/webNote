@@ -44,7 +44,9 @@ webNote/
 │   │   ├── config.js              //模块: 软件配置对象(依赖于localDatabase模块)
 │   │   ├── content.html.js        //模块: 页面html模板
 │   │   ├── localDatabase.js       //模块: 本地数据db操作
-│   │   └── msg.js                 //模块: 程序内部通信
+│   │   ├── msg.js                 //模块: 程序内部通信
+│   │   ├── service.js             //模块: 服务模块
+│   │   └── user.js                //模块: 用户操作模块(依赖于jquery和service模块)
 │   ├── background.js              //后台页面js文件
 │   ├── content.js                 //页面js文件
 │   ├── option.js                  //配置页js文件
@@ -63,6 +65,8 @@ webNote/
 ## TODO
 
 - bugfix: When exec func `syncToLocal` or func `import-data` will probably make data duplicate(when `list` and `trash` have the same article).
+- 优化content页笔记库提示语: 1.)如果没有创建笔记则提示笔记库为空; 2.)如果搜索结果为空则提示搜索不到相关笔记。
+- 优化content页的代码实现，解决闪现问题。
 - 增加新增笔记时的article id唯一性检测。
 - 增加导入数据时的article id唯一性检测。
 - 在popup页里关闭插件时应对每个tab进行通信。
@@ -75,9 +79,8 @@ webNote/
 - Add func `forget password`.
 - Use `Session support` to store user's login status in server rather than store it in client by `localstorage`.
 
-## 其他
+## 使用说明
 
-目前此目录已可加载为Chrome Extension。
-
+- 目前此目录已可加载为Chrome Extension。
 - 开启后，随便打开一个网站可以看到content.js效果。
 - 在扩展管理页面点击背景页，可查看background.js的运行效果。
