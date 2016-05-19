@@ -89,35 +89,37 @@
                             <p>请先登录</p>
                             <a id="change_login_mode" data-toggle="regist">还没有账号？</a>
                         </div>
+
                         <form id="login_form">
                             <div class="form_row">
                                 <label for="login_account"><i class="fa fa-user"></i></label>
-                                <input id="login_account" name="account" type="text" required>
+                                <input id="login_account" name="account" type="text" placeholder="请输入账号" required>
                             </div>
 
                             <div class="form_row">
                                 <label for="login_password"><i class="fa fa-unlock-alt"></i></label>
-                                <input id="login_password" name="password" type="password" required>
+                                <input id="login_password" name="password" type="password" placeholder="请输入密码" required>
                             </div>
 
                             <div class="form_row">
                                 <button type="submit">登 陆</button>
                             </div>
                         </form>
+
                         <form id="regist_form">
                             <div class="form_row">
                                 <label for="regist_account"><i class="fa fa-user"></i></label>
-                                <input id="regist_account" name="account" type="text" required>
+                                <input id="regist_account" name="account" type="text" placeholder="请输入账号" required>
                             </div>
 
                             <div class="form_row">
                                 <label for="regist_password"><i class="fa fa-unlock-alt"></i></label>
-                                <input id="regist_password" name="password" type="password" required>
+                                <input id="regist_password" name="password" type="password" placeholder="请输入密码" required>
                             </div>
 
                             <div class="form_row">
                                 <label for="regist_password"><i class="fa fa-unlock-alt"></i></label>
-                                <input id="regist_password_confirm" name="password_confirm" type="password" required>
+                                <input id="regist_password_confirm" name="password_confirm" type="password" placeholder="请再输入一次密码" required>
                             </div>
 
                             <div class="form_row">
@@ -162,45 +164,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div id="update-userinfo">
-                        <form id="update-userinfo_form">
-                            <div class="form_row">
-                                <label for="update_name"><i class="fa fa-user-md"></i></label>
-                                <input id="update_name" name="name" type="text" required>
-                            </div>
-
-                            <div class="form_row">
-                                <label for="update_sex_man"><i class="fa fa-male"></i></label>
-                                <label for="update_sex_man" class="radio_text">男</label>
-                                <input id="update_sex_man" name="sex" type="radio" value="男">
-                                <label for="update_sex_woman" class="radio_text">女</label>
-                                <input id="update_sex_woman" name="sex" type="radio" value="女">
-                            </div>
-
-                            <div class="form_row">
-                                <button type="submit">修改</button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div id="update-password">
-                        <form id="update-password_form">
-                            <div class="form_row">
-                                <label for="update_password"><i class="fa fa-unlock-alt"></i></label>
-                                <input id="update_password" name="password" type="password" required>
-                            </div>
-
-                            <div class="form_row">
-                                <label for="update_password_confirm"><i class="fa fa-unlock-alt"></i></label>
-                                <input id="update_password_confirm" name="password_confirm" type="password" required>
-                            </div>
-
-                            <div class="form_row">
-                                <button type="submit">修改</button>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
 
@@ -219,6 +182,59 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="update-password" class="dialog">
+        <div class="dialog-bg"></div>
+        <form id="update-password_form">
+            <div id="update-password-dialog-cancel" class="dialog-cancel">
+                <i class="fa fa-times"></i>
+            </div>
+
+            <p class="form-title">修改密码</p>
+
+            <div class="form_row">
+                <label for="update_password"><i class="fa fa-unlock-alt"></i></label>
+                <input id="update_password" name="password" type="password" placeholder="请输入新密码" required>
+            </div>
+
+            <div class="form_row">
+                <label for="update_password_confirm"><i class="fa fa-unlock-alt"></i></label>
+                <input id="update_password_confirm" name="password_confirm" type="password" placeholder="请再输入一次新密码" required>
+            </div>
+
+            <div class="form_row">
+                <button type="submit">修改</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="update-userinfo" class="dialog">
+        <div class="dialog-bg"></div>
+        <form id="update-userinfo_form">
+            <div id="update-userinfo-dialog-cancel" class="dialog-cancel">
+                <i class="fa fa-times"></i>
+            </div>
+
+            <p class="form-title">修改个人信息</p>
+
+            <div class="form_row">
+                <label for="update_name"><i class="fa fa-user-md"></i></label>
+                <input id="update_name" name="name" type="text" placeholder="请输入用户名" required>
+            </div>
+
+            <div class="form_row">
+                <label for="update_sex_man"><i class="fa fa-male"></i></label>
+                <label for="update_sex_man" class="radio_text">男</label>
+                <input id="update_sex_man" name="sex" type="radio" value="男">
+                <label for="update_sex_woman" class="radio_text">女</label>
+                <input id="update_sex_woman" name="sex" type="radio" value="女">
+            </div>
+
+            <div class="form_row">
+                <button type="submit">修改</button>
+            </div>
+        </form>
     </div>
 
     <script src="../js/lib/require.min.js"></script>

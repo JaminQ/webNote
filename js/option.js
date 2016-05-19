@@ -374,29 +374,12 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
             });
         });
 
-        $('#update-userinfo-btn').click(function() {
-            $('#update-userinfo_form').show();
-        });
-
-        $('#update-userinfo_form').on('submit', function() {
-            var formdata = $(this).serializeObject();
-            user.make(formdata);
-            user.updateUserinfo(function(data) {
-                if (data.status === 1) {
-                    showMsg(data.msg);
-                    $('#update-userinfo_form').hide();
-                    getUserinfo();
-                } else {
-                    console.log(data.msg);
-                }
-            }, function(data) {
-                console.log(data);
-            });
-            return false;
-        });
-
         $('#update-password-btn').click(function() {
-            $('#update-password_form').show();
+            $('#update-password').show();
+        });
+
+        $('#update-password-dialog-cancel').click(function(){
+            $('#update-password').hide();
         });
 
         $('#update-password_form').on('submit', function() {
@@ -410,7 +393,32 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
             user.updatePassword(function(data) {
                 if (data.status === 1) {
                     showMsg(data.msg);
-                    $('#update-password_form').hide();
+                    $('#update-password').hide();
+                } else {
+                    console.log(data.msg);
+                }
+            }, function(data) {
+                console.log(data);
+            });
+            return false;
+        });
+
+        $('#update-userinfo-btn').click(function() {
+            $('#update-userinfo').show();
+        });
+
+        $('#update-userinfo-dialog-cancel').click(function(){
+            $('#update-userinfo').hide();
+        });
+
+        $('#update-userinfo_form').on('submit', function() {
+            var formdata = $(this).serializeObject();
+            user.make(formdata);
+            user.updateUserinfo(function(data) {
+                if (data.status === 1) {
+                    showMsg(data.msg);
+                    $('#update-userinfo').hide();
+                    getUserinfo();
                 } else {
                     console.log(data.msg);
                 }
