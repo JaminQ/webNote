@@ -17,7 +17,7 @@ require(['jquery'], function($) {
             var arr = this.serializeArray(),
                 obj = {};
             $(arr).each(function(i, item) {
-                obj[item.name] = typeof item.value === "string" ? item.value.replace(/\u00A0/ig, " ") : item.value;
+                obj[item.name] = typeof item.value === "string" ? $.trim(item.value.replace(/\u00A0/ig, " ")) : item.value;
             });
 
             return obj;
