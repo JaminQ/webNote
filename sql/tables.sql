@@ -5,7 +5,7 @@ CREATE TABLE `<database_name>`.`webNote_user` (
     `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
     `account` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '用户账号',
     `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '用户密码',
-    `name` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '用户名',
+    `name` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '用户名',
     `sex` enum('男','女','') DEFAULT '' COMMENT '用户性别',
     `create_time` datetime NOT NULL COMMENT '创建时间',
     `update_time` datetime NOT NULL COMMENT '更新时间',
