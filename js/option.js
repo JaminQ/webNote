@@ -195,7 +195,6 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
                 user.getUserinfo(function(data) {
                     if (data.status === 1) {
                         user.make(data.data);
-                        $('#login').remove();
                         var $userinfo = $('#after-login .userinfo');
                         $userinfo.find('.user-account').text(user.account);
                         $userinfo.find('.user-name').text(user.name);
@@ -210,6 +209,7 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
                                 $('#update_sex_woman').attr('checked', true);
                                 break;
                         }
+                        $('#after-login').show();
                     } else {
                         console.log(data.msg);
                     }
@@ -445,7 +445,7 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
                         if (data.status === 1) {
                             showMsg(data.msg);
                             user.setId(data.data.id);
-                            $('#after-login').show();
+                            $('#login').remove();
                             getUserinfo();
                             getServerDatainfo();
                         } else {
@@ -521,6 +521,7 @@ require(['jquery', 'article', 'localDatabase', 'user'], function($, Article, Loc
                     }
                 });
             } else {
+                $('#login').remove();
                 $('#after-login').show();
                 getUserinfo();
                 getServerDatainfo();
