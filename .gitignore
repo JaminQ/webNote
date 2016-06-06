@@ -1,3 +1,8 @@
 .DS_Store
+
 client/.DS_Store
 client/demo
+
+server/.DS_Store
+server/_log
+server/demo
