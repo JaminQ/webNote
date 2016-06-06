@@ -1,0 +1,376 @@
+* {
+  font-family: 'Microsoft YaHei', STHeiti, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+}
+a {
+  cursor: pointer;
+}
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: #000;
+}
+a:hover {
+  text-decoration: underline;
+}
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  background-color: #2f4050;
+}
+.header h1 {
+  font-size: 36px;
+  line-height: 80px;
+  margin-left: 20px;
+  padding-left: 90px;
+  color: #79bbff;
+  background: transparent url('../icon/logo128.png') no-repeat left center;
+  background-size: 70px 70px;
+}
+.header .search-box {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.header .search-box i {
+  font-size: 25px;
+  position: absolute;
+  top: 6px;
+  left: 20px;
+  color: #c8c8c8;
+}
+.header .search-box input {
+  font-size: 16px;
+  line-height: 36px;
+  box-sizing: border-box;
+  width: 300px;
+  padding: 0 20px 0 55px;
+  border: 1px solid #ccc;
+  border-radius: 23px;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+.content {
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  overflow-y: auto;
+  width: 100%;
+}
+.content .sidebar {
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  background: #2f4050;
+}
+.content .sidebar ul {
+  list-style: none;
+}
+.content .sidebar ul li {
+  font-size: 20px;
+  line-height: 30px;
+  height: 30px;
+  padding: 20px 30px 20px 0;
+  cursor: pointer;
+  text-align: right;
+  color: #fff;
+}
+.content .sidebar ul li:hover {
+  background-color: #a6d2ff;
+}
+.content .sidebar ul li.active {
+  background-color: #79bbff;
+}
+.content .tab-content {
+  margin-left: 200px;
+  height: 100%;
+}
+.content .tab-content .tab-pane {
+  display: none;
+}
+.content .tab-content .tab-pane.active {
+  display: block;
+}
+.content .tab-content .tab-pane .article-box .content-list {
+  margin: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 #c8c8c8;
+}
+.content .tab-content .tab-pane .article-box .content-list .content-list-title {
+  font-size: 17px;
+  float: left;
+  padding: 10px 0 0 10px;
+  border-left: 7px solid skyblue;
+}
+.content .tab-content .tab-pane .article-box .content-list .content-list-date {
+  font-size: 12px;
+  float: right;
+  margin: 15px 30px 0 0;
+  color: #6c6c6c;
+}
+.content .tab-content .tab-pane .article-box .content-list .content-list-content {
+  font-size: 14px;
+  clear: both;
+  overflow: hidden;
+  padding: 10px 20px;
+}
+.content .tab-content .tab-pane .article-box .content-list .content-list-footer {
+  font-size: 13px;
+  line-height: 30px;
+  height: 30px;
+  margin-top: 20px;
+  padding-left: 20px;
+  border-top: 1px solid #f2f2f5;
+}
+.content .tab-content .tab-pane .article-box .content-list .content-list-footer a {
+  margin: 0 20px 0 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #38f;
+}
+.content .tab-content .tab-pane .article-box .content-list-empty {
+  font-size: 20px;
+  margin-top: 50px;
+  text-align: center;
+  color: #555;
+}
+.content .tab-content .tab-pane .article-box.btn-box-center button {
+  font-size: 72px;
+  display: inline-block;
+  padding: 20px;
+  cursor: pointer;
+  transition: .5s;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  background: #1a7bb9;
+  outline: none;
+}
+.content .tab-content .tab-pane .article-box.btn-box-center button:hover {
+  transform: scale(1.1);
+}
+.content .tab-content .tab-pane .article-box.btn-box-center div {
+  font-size: 16px;
+  display: inline-block;
+  margin-left: 30px;
+}
+.content .tab-content .tab-pane .article-box.btn-box-center div b {
+  font-size: 18px;
+}
+.content .tab-content .tab-pane .new-article,
+.content .tab-content .tab-pane .edit-article {
+  height: 100%;
+}
+.content .tab-content .tab-pane .new-article input,
+.content .tab-content .tab-pane .edit-article input {
+  font-size: 24px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+}
+.content .tab-content .tab-pane .new-article .func-btn-box,
+.content .tab-content .tab-pane .edit-article .func-btn-box {
+  position: relative;
+  top: 10px;
+  left: 20px;
+}
+.content .tab-content .tab-pane .new-article .area-holder,
+.content .tab-content .tab-pane .edit-article .area-holder {
+  margin-top: 20px;
+}
+.content .tab-content .tab-pane .new-article .area-holder textarea,
+.content .tab-content .tab-pane .edit-article .area-holder textarea {
+  position: absolute;
+  top: 0;
+  bottom: 200px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.content .tab-content .tab-pane .new-article .btn,
+.content .tab-content .tab-pane .edit-article .btn {
+  font-size: 16px;
+  margin-right: 20px;
+  padding: 8px 50px;
+  cursor: pointer;
+  transition: .5s;
+  border: 0;
+  border-radius: 3px;
+  background: #bababa;
+}
+.content .tab-content .tab-pane .new-article .btn:hover,
+.content .tab-content .tab-pane .edit-article .btn:hover {
+  transform: scale(1.1);
+}
+.content .tab-content .tab-pane .new-article .btn-primary,
+.content .tab-content .tab-pane .edit-article .btn-primary {
+  color: #fff;
+  background-color: #18a689;
+}
+#export,
+#import,
+#sync {
+  height: 100%;
+}
+#export .article-box,
+#import .article-box,
+#sync .article-box {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#login .login_header {
+  text-align: center;
+}
+#login .login_header p {
+  font-size: 32px;
+  color: #1a7bb9;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+#login form {
+  box-shadow: 0 0 10px 0 #c8c8c8;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: white;
+}
+#login form .form_row,
+.dialog form .form_row {
+  margin: 10px 0;
+  text-align: center;
+}
+#login form .form_row label,
+.dialog form .form_row label {
+  display: inline-block;
+  font-size: 17px;
+  width: 17px;
+  height: 28px;
+  line-height: 28px;
+  color: #1a7bb9;
+}
+#update-userinfo form .form_row label.radio_text {
+  margin: 0 5px;
+  color: black;
+}
+#login form .form_row input,
+.dialog form .form_row input {
+  display: inline-block;
+}
+#login form .form_row input[type="text"],
+.dialog form .form_row input[type="text"],
+#login form .form_row input[type="password"],
+.dialog form .form_row input[type="password"] {
+  width: 160px;
+  padding: 2px 5px;
+  height: 20px;
+  line-height: 20px;
+}
+#update-userinfo form .form_row input[type="radio"] {
+  height: 15px;
+}
+#update-userinfo form .form_row input#update_sex_woman {
+  margin-right: 85px;
+}
+#login form .form_row button,
+.dialog form .form_row button {
+  font-size: 18px;
+  padding: 10px;
+  cursor: pointer;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  background: #1a7bb9;
+  outline: none;
+  width: 250px;
+}
+#after-login {
+  overflow: hidden;
+}
+#after-login .info-wrapper {
+  float: left;
+  width: 200px;
+  padding: 20px 50px;
+}
+#after-login .info-wrapper.userinfo {
+  border-right: 1px rgba(160, 160, 160, .7) solid;
+}
+#after-login .info-wrapper.server-datainfo {
+  margin-left: 8px;
+}
+#after-login .info-wrapper .info-logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+#after-login .info-wrapper .info-logo i {
+  font-size: 100px;
+  color: #1a7bb9;
+}
+#after-login .info-wrapper .info-detail {
+  line-height: 25px;
+}
+#after-login .info-wrapper .info-func {
+  margin-top: 40px;
+}
+#after-login .info-wrapper .info-func button {
+  font-size: 12px;
+  padding: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  background: #1a7bb9;
+  outline: none;
+}
+.dialog,
+.dialog .dialog-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.dialog .dialog-bg {
+  background-color: black;
+  opacity: .7;
+}
+.dialog form {
+  position: absolute;
+  background-color: white;
+  left: 50%;
+  top: 50%;
+  margin: -123px 0 0 -175px;
+  padding: 10px 50px 20px 50px;
+}
+.dialog form p.form-title {
+  text-align: center;
+  color: #1a7bb9;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+.dialog form .dialog-cancel {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 8px;
+  font-size: 24px;
+  color: rgb(160, 160, 160);
+}
+.dialog form .form_row button {
+  margin-top: 20px;
+}
+#regist_form,
+#after-login,
+.dialog {
+  display: none;
+}
